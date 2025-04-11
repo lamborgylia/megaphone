@@ -95,3 +95,145 @@ body {
     color: #333;
     font-size: 20px;
 }
+
+
+.carousel-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #00B259;
+    padding: 40px;
+    min-height: 400px;
+    gap: 30px;
+}
+
+.carousel-content .left {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.carousel-content .left h2 {
+    font-size: 48px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 10px !important;
+    color: white !important;
+}
+
+.carousel-content .left p {
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    margin-bottom: 25px !important;
+    color: white !important;
+}
+
+
+.btn-custom {
+    display: inline-block;
+    background-color: purple;
+    color: white;
+    padding: 12px 30px;
+    font-size: 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.carousel-content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    background-color: #00B259;
+    padding: 40px 60px;
+    min-height: 375px;
+    gap: 30px;
+    overflow: visible;
+}
+
+.carousel-content .left {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.carousel-content .left h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.carousel-content .left p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-custom {
+    display: inline-block;
+    background-color: purple;
+    color: white;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    width: fit-content;
+}
+
+.carousel-content .right {
+    flex: 1;
+    position: relative;
+    overflow: visible;
+}
+
+.floating-img {
+    width: 500px;
+    height: auto;
+    position: absolute;
+    bottom: -60px;
+    right: 0;
+    z-index: 5;
+}
+
+.floating-img[src*="banner3.png"] {
+    width: 600px !important;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 20px;         /* расстояние от низа слайда */
+    left: 50%;            /* центрируем по ширине */
+    transform: translateX(0%);  /* сдвигаем обратно на 50% ширины — точный центр */
+    display: flex !important;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.carousel {
+    position: relative;
+}
+
+
+.carousel-indicators [data-bs-target] {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    border: none !important;
+    transition: all 0.3s ease;
+    opacity: 1 !important;
+}
+
+.carousel-indicators .active {
+    background-color: white !important;
+    width: 14px !important;
+    height: 14px !important;
+}
+
+
