@@ -1,3 +1,17 @@
+/*Верхушка для будущего base.html*/
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+
+
+/*начало*/
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -12,6 +26,8 @@ body {
     align-items: center;
     padding: 10px 40px;
 }
+
+
 
 /* Логотип и меню идут слева */
 .logo {
@@ -97,6 +113,7 @@ body {
 }
 
 
+/*каруселька*/
 .carousel-content {
     display: flex;
     justify-content: space-between;
@@ -236,4 +253,243 @@ body {
     height: 14px !important;
 }
 
+/*выбор тарифов*/
+.tariff-section {
+    background-color: #fff;
+    padding: 40px 20px;
+}
 
+.tariff-title {
+    font-size: 40px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+}
+
+.btn-all {
+    background-color: #0633a3c0;
+}
+
+.region-name {
+    font-size: 40px;
+    font-weight: 500;
+    color: #1a8fff;
+    border-bottom: 1px dotted #1a8fff;
+    cursor: pointer;
+}
+
+.tariff-filters {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 50px; /* расстояние по горизонтали */
+    row-gap: 30px;     /* если кнопки переносятся */
+}
+
+
+.tariff-filters .btn {
+    border-radius: 999px;
+    padding: 8px 20px;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+    border: none;
+    transition: 0.5s;
+    color: #333;
+}
+
+.tariff-filters .btn-dark {
+    background-color: #1e24be;
+    border: none;
+}
+
+.tariff-filters .btn-light {
+    background-color: #f0f0f0;
+    border: none;
+}
+
+.tariff-filters .btn:hover {
+    opacity: 0.85;
+}
+
+
+.tariff-filters .btn.active {
+    background-color: #2a2c74;
+    color: #fff;
+}
+
+.tariff-filters .btn:hover {
+    opacity: 0.9;
+}
+
+
+
+
+/*проверка адреса*/
+
+.address-check {
+    padding: 40px 0;
+  }
+  
+  .container-custom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .address-card {
+    position: relative;
+    background-color: #00B956;
+    padding: 40px;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  
+  .content {
+    z-index: 1;
+    position: relative;
+    max-width: 700px;
+    color: white;
+  }
+  
+  .address-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+  
+  .address-form input {
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: none;
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .address-form button {
+    background-color: purple;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .absolute-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    max-height: 270px;
+    z-index: 0;
+  }
+  
+
+
+  /*Как подключить интернет*/
+
+  .steps-section {
+    background-color: #f9f9f9;
+    padding: 40px 20px;
+  }
+  
+  .steps-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  .steps-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; /* для адаптивки */
+    gap: 30px;
+  }
+  
+  .steps-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+  }
+  
+  .step-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 280px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+  
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 25px;
+    margin: 0 auto 10px;
+    background-color: #e0e0e0;
+    color: #000;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .step-number.active {
+    background-color: #00B259;
+    color: #fff;
+  }
+  
+  .step-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  
+  .step-card p {
+    font-size: 15px;
+    color: #444;
+  }
+  
+
+
+  .faq-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  
+  .custom-accordion .accordion-item {
+    background-color: #fff;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    margin-bottom: 16px;
+  }
+  
+  .custom-accordion .accordion-button {
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 16px;
+    padding: 16px 24px;
+  }
+  
+  .custom-accordion .accordion-body {
+    font-size: 15px;
+    padding: 20px 24px;
+    color: #444;
+  }
+  
+  .custom-accordion .accordion-button::after {
+    transform: scale(1.2); /* увеличим стрелку */
+  }
+  
+  .purple {
+    color: #6900bc;
+  }
+  
