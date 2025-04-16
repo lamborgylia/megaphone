@@ -21,10 +21,81 @@ body {
     border-bottom: none;
 }
 
+
 .header-top {
-    display: flex;
-    align-items: center;
-    padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex: 1 1 0; /* Берёт доступное пространство */
+  min-width: 0;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 1; /* Может немного сжаться */
+}
+
+.region-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  flex-shrink: 0; /* Не даёт сжиматься */
+}
+
+
+
+/*Техподдержка*/
+.support-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-right: 40px;
+  font-size: 16px;
+  color: #000;
+}
+
+.support-block {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.support-block:nth-child(2) {
+  margin-left: 4px;
+}
+
+.support-label {
+  font-weight: 400;
+  color: #666;
+}
+
+.support-number {
+  font-weight: 600;
+  color: #000;
+}
+
+.support-icons a img {
+  width: 39px;
+  height: 39px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.support-icons a img:hover {
+  transform: scale(1.1);
 }
 
 
@@ -66,7 +137,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-left: auto; /* ← ВАЖНО! Отталкивает блок вправо */
+    margin-right: 0px; /* ← ВАЖНО! Отталкивает блок вправо */
 }
 
 .region {
@@ -81,6 +152,84 @@ body {
     margin-right: 5px;
 }
 
+/*Город кнопка*/
+.region-button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font: inherit;
+}
+
+
+
+
+#region-dropdown img {
+  margin-right: 5px;
+}
+
+.region-button:hover {
+  background-color: rgba(0, 178, 89, 0.1);
+  border-radius: 10px;
+  text-decoration: underline;
+}
+
+.region-button img {
+  height: 20px;
+}
+.close-btn {
+  font-size: 24px;
+  cursor: pointer;       /* 👈 курсор как на кнопку */
+  transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+  color: red;            /* 👈 подсветка при наведении */
+}
+
+
+.city-item {
+  padding: 4px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.city-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+
+
+
+.search-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.search-icon:hover {
+  color: #00B259;
+}
+
+
+
+
+
+
+
 .connect-btn {
     background-color: #00B259;
     color: white;
@@ -89,6 +238,8 @@ body {
     border-radius: 4px;
     font-size: 14px;
     font-weight: bold;
+    white-space: nowrap; /* чтобы надпись не переносилась */
+    flex-shrink: 0;
 }
 
 .bottom-nav {
@@ -493,3 +644,96 @@ body {
     color: #6900bc;
   }
   
+
+  /*Выбор города*/
+  .hidden {
+    display: none !important;
+  }
+  
+
+
+/*низ*/
+.footer {
+  background-color: #f9f9f9;
+  padding: 40px 20px;
+}
+
+.container-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start; /* 🔥 Вот это важно */
+  gap: 30px;
+  max-width: 1300px; /* или 1100px, как тебе красивее */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+.footer-col {
+  flex: 1 1 220px;
+  min-width: 200px;
+}
+
+.footer-logo {
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.footer-partner {
+  font-weight: bold;
+  color: #00B259;
+  margin-bottom: 10px;
+}
+
+.footer-description {
+  color: #444;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #888;
+}
+
+.footer-col h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-button {
+  margin-top: 10px;
+}
+
+.call-btn {
+  background-color: #00B259;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+.call-btn:hover {
+  background-color: #009b49;
+}

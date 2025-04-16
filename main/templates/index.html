@@ -9,24 +9,50 @@
 </head>
 <body>
     <header class="header">
-        <div class="header-top">
-            <div class="logo">
-                <img src="../static/img/logo.svg" alt="МегаФон">
-                <div class="partner">официальный партнёр</div>
-            </div>                      
-            <nav class="top-nav">
-                <a href="#">Для дома</a>
-                <a href="#">Для бизнеса</a>
-                <a href="#">Личный кабинет</a>
-            </nav>
-            <div class="region-connect">
-                <span class="region">
-                    <img src="../static/img/location-icon.jpg" alt="Локация">
-                    г Самара
-                </span>
-                <a href="#" class="connect-btn">ПОДКЛЮЧИТЬСЯ</a>
-            </div>
+      <div class="header-top">
+
+        <!-- ЛЕВАЯ часть -->
+        <div class="header-left">
+          <div class="logo">
+            <img src="../static/img/logo.svg" alt="МегаФон">
+            <div class="partner">официальный партнёр</div>
+          </div>
+          <nav class="top-nav">
+            <a href="#">Для дома</a>
+            <a href="#">Для бизнеса</a>
+            <a href="#">Личный кабинет</a>
+          </nav>
         </div>
+      
+        <!-- ЦЕНТРАЛЬНАЯ часть -->
+        <div class="header-center">
+          <div class="support-info">
+            <div class="support-block">
+              <span class="support-label">Подключение</span>
+              <span class="support-number">+7 937 657 54 58</span>
+            </div>
+            <div class="support-block">
+              <span class="support-label">Техподдержка</span>
+              <span class="support-number">8 800 550 00 01</span>
+            </div>
+            <div class="support-icons">
+              <a href="#"><img src="../static/img/whatsapp-icon.png" alt="WhatsApp"></a>
+              <a href="#"><img src="../static/img/telegram-icon.png" alt="Telegram"></a>
+            </div>
+          </div>
+        </div>
+      
+        <!-- ПРАВАЯ часть -->
+        <div class="region-dropdown">
+          <button class="region-button">
+            <img src="../static/img/location-icon.jpg" alt="Локация">
+            <span id="selectedCity">г Самара</span>
+          </button>
+          <a href="#" class="connect-btn">ПОДКЛЮЧИТЬСЯ</a>
+        </div>
+      
+      </div>
+      
 
         <nav class="bottom-nav">
             <a href="#">Тарифы</a>
@@ -51,7 +77,7 @@
             <a href="#" class="btn-custom">Подробнее</a>
           </div>
           <div class="right">
-            <img src="../static/img/banner1.png" class="floating-img" alt="Активируй МегаСилы" />
+            <img src="../static/img/Frame 1.png" class="floating-img" alt="Активируй МегаСилы" />
           </div>
         </div>
       </div>
@@ -65,7 +91,7 @@
             <a href="#" class="btn-custom">Выбрать тариф</a>
           </div>
           <div class="right">
-            <img src="../static/img/banner2.png" class="floating-img" alt="Интернет для дома" />
+            <img src="../static/img/forhome.png" class="floating-img" alt="Интернет для дома" />
           </div>
         </div>
       </div>
@@ -111,6 +137,136 @@
     </div>
   </section>
   
+
+            <!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ГОРОДА -->
+            <div class="city-modal hidden" id="cityModal">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2>Выберите ваш город</h2>
+                  <span class="close-btn" onclick="closeCityModal()">&times;</span>
+                </div>
+
+                <div class="modal-search">
+                  <form id="citySearchForm" onsubmit="event.preventDefault(); filterCities();">
+                    <input type="text" placeholder="Или введите его название" id="citySearch">
+                    <button type="submit" class="search-icon">🔍</button>
+                  </form>
+                </div>
+                
+                
+
+                <div class="modal-body">
+                  <div class="regions-list">
+                    <div class="region-group">
+                      <div class="region-letter">А</div>
+                      <div class="region-item" onclick="showCities('Астраханская область')">Астраханская область</div>
+                    </div>
+                    <div class="region-group">
+                      <div class="region-letter">Б</div>
+                      <div class="region-item" onclick="showCities('Белгородская область')">Белгородская область</div>
+                    </div>
+                    <div class="region-group">
+                      <div class="region-letter">В</div>
+                      <div class="region-item" onclick="showCities('Воронежская область')">Воронежская область</div>
+                    </div>
+                    <div class="region-group">
+                      <div class="region-letter">К</div>
+                      <div class="region-item" onclick="showCities('Калининградская область')">Калининградская область</div>
+                      <div class="region-item" onclick="showCities('Краснодарский край')">Краснодарский край</div>
+                      <div class="region-item" onclick="showCities('Курская область')">Курская область</div>
+                    </div>
+                    <div class="region-group">
+                      <div class="region-letter">М</div>
+                      <div class="region-item" onclick="showCities('Москва')">Москва</div>
+                    </div>
+                  </div>
+
+                  <div class="cities-list" id="citiesColumn">
+                    <div class="city-placeholder">Выберите область слева</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <style>
+            .city-modal {
+              position: fixed;
+              top: 0; left: 0;
+              width: 100%; height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              z-index: 1000;
+            }
+            .modal-content {
+              background: white;
+              width: 80%;
+              max-width: 1000px;
+              border-radius: 8px;
+              padding: 20px;
+              max-height: 90vh;
+              overflow: auto;
+            }
+            .modal-header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 15px;
+            }
+            .modal-search {
+              position: relative;
+              margin-bottom: 20px;
+            }
+            .modal-search input {
+              width: 100%;
+              padding: 10px 40px 10px 10px;
+              font-size: 16px;
+            }
+            .search-icon {
+              position: absolute;
+              right: 10px;
+              top: 50%;
+              transform: translateY(-50%);
+              font-size: 18px;
+            }
+            .modal-body {
+              display: flex;
+              gap: 40px;
+            }
+            .regions-list, .cities-list {
+              width: 50%;
+              max-height: 400px;
+              overflow-y: auto;
+            }
+            .region-letter {
+              color: red;
+              font-weight: bold;
+              margin-top: 15px;
+            }
+            .region-item {
+              cursor: pointer;
+              padding: 4px 0;
+            }
+            .region-item:hover {
+              text-decoration: underline;
+            }
+            .city-item {
+              padding: 4px 0;
+            }
+            .city-placeholder {
+              color: #888;
+              font-style: italic;
+            }
+            .hidden {
+              display: none !important;
+            }
+            </style>
+
+
+
+
+
   
 
 
@@ -309,5 +465,175 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+      regionBtn = document.querySelector('.region-button');
+      cityModal = document.getElementById('cityModal');
+
+    
+      regionBtn.addEventListener('click', () => {
+        cityModal.classList.remove('hidden');
+      });
+    
+      function closeCityModal() {
+        cityModal.classList.add('hidden');
+      }
+    
+      function filterCities() {
+        const input = document.getElementById("citySearch").value.toLowerCase();
+        const items = document.querySelectorAll("#cityList li");
+        items.forEach(li => {
+          li.style.display = li.textContent.toLowerCase().includes(input) ? "block" : "none";
+        });
+      }
+    
+      // Закрытие модалки по клику вне окна
+      window.addEventListener('click', function(e) {
+        if (e.target === cityModal) {
+          cityModal.classList.add('hidden');
+        }
+      });
+    </script>
+
+
+
+
+    <footer class="footer">
+      <div class="container-footer">
+        <div class="footer-col">
+          <img src="../static/img/logo.svg" alt="МегаФон" class="footer-logo" />
+          <div class="footer-partner">официальный партнёр</div>
+          <p class="footer-description">
+            Мегафон: самые популярные тарифы и предложения: домашний интернет, телевидение, пакеты с мобильной связью, а также подключение услуг для бизнеса.
+          </p>
+          <small class="footer-copy">Сайт официального партнёра ПАО «МегаФон». Политика конфиденциальности</small>
+        </div>
+
+        <div class="footer-col">
+          <h4>Тарифы на услуги Мегафон</h4>
+          <ul>
+            <li><a href="#">Мегафон домашний интернет</a></li>
+            <li><a href="#">Интернет и телевидение</a></li>
+            <li><a href="#">Интернет, мобильная связь и ТВ</a></li>
+            <li><a href="#">Интернет и мобильная связь</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Полезная информация</h4>
+          <ul>
+            <li><a href="#">Интернет для бизнеса</a></li>
+            <li><a href="#">Контакты</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Отдел подключения</h4>
+          <div class="footer-button">
+            <button class="call-btn">Позвонить</button>
+          </div>
+        </div>
+        
+      </div>
+    </footer>
+
+
+
+    <script>
+      const citiesByRegion = {
+        'Астраханская область': ["г Астрахань", "г Нариманов"],
+        'Белгородская область': ["г Белгород", "г Губкин", "п Майский", "г Старый Оскол", "г Строитель", "к Шебекино"],
+        'Краснодарский край': ["г Сочи", "с Раздольное"],
+        'Курская область': ["г Курск", "д Ворошнево", "г Курчатов"],
+        'Воронежская область': ["г Воронеж"],
+        'Калининградская область': ["г Калининград", "пгт Янтарный"],
+        'Москва': ["г Москва", "г Зеленоград"]
+      };
+      
+      function showCities(region) {
+        const cities = citiesByRegion[region] || [];
+        const container = document.getElementById('citiesColumn');
+        container.innerHTML = cities.map(city => `<div class="city-item">${city}</div>`).join('');
+      }
+      
+      function closeCityModal() {
+        document.getElementById('cityModal').classList.add('hidden');
+      }
+      
+      function filterCities() {
+        const input = document.getElementById("citySearch").value.toLowerCase().trim();
+        const container = document.getElementById('citiesColumn');
+      
+        if (!input) {
+          container.innerHTML = '<div class="city-placeholder">Выберите область слева</div>';
+          return;
+        }
+      
+        const allCities = Object.entries(citiesByRegion).flatMap(([region, cities]) =>
+          cities.map(city => ({
+            region,
+            city,
+            cleanCity: city.replace(/^(г|пгт|п|д|с|к)\s/, '').toLowerCase()
+          }))
+        );
+      
+        const filtered = allCities.filter(({ cleanCity }) => cleanCity.includes(input));
+      
+        container.innerHTML = filtered.length > 0
+          ? filtered.map(({ city }) => `<div class="city-item">${city}</div>`).join('')
+          : '<div class="city-placeholder">Ничего не найдено</div>';
+      }
+      
+      window.onload = function () {
+        const regionBtn = document.querySelector('.region-button');
+        const cityModal = document.getElementById('cityModal');
+        const closeBtn = document.querySelector('.close-btn');
+        const searchInput = document.getElementById("citySearch");
+        const searchIcon = document.querySelector(".search-icon");
+      
+        regionBtn.addEventListener('click', () => {
+          cityModal.classList.remove('hidden');
+        });
+      
+        closeBtn.addEventListener('click', () => {
+          cityModal.classList.add('hidden');
+        });
+      
+        window.addEventListener('click', (e) => {
+          if (e.target === cityModal) {
+            cityModal.classList.add('hidden');
+          }
+        });
+      
+        searchInput.addEventListener("keydown", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            filterCities();
+          }
+        });
+      
+        searchIcon.addEventListener("click", function (e) {
+          e.preventDefault();
+          filterCities();
+        });
+      };
+
+
+
+      document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("city-item")) {
+      const cityName = e.target.textContent;
+      document.getElementById("selectedCity").textContent = cityName;
+      document.getElementById("cityModal").classList.add("hidden");
+    }
+  });
+
+
+
+
+
+      </script>
+
 </body>
 </html>
