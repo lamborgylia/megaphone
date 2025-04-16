@@ -46,7 +46,7 @@
         <div class="region-dropdown">
           <button class="region-button">
             <img src="../static/img/location-icon.jpg" alt="Локация">
-            <span id="selectedCity">г Самара</span>
+            <span id="cityHeader">г Самара</span>
           </button>
           <a href="#" class="connect-btn">ПОДКЛЮЧИТЬСЯ</a>
         </div>
@@ -123,9 +123,10 @@
   <section class="tariff-section">
     <div class="container">
       <div class="tariff-header d-flex flex-wrap align-items-center mb-3">
-        <h2 class="tariff-title me-2">Тарифы для твоего региона:</h2>
-        <span class="region-name">Самара</span>
-      </div>
+        <h2 class="tariff-title">
+          Тарифы для твоего региона: <span id="cityTariff">г Самара</span>
+        </h2>
+        
   
       <div class="tariff-filters d-flex flex-wrap gap-3">
         <button class="btn active">Все тарифы</button>
@@ -586,54 +587,140 @@
       }
       
       window.onload = function () {
-        const regionBtn = document.querySelector('.region-button');
-        const cityModal = document.getElementById('cityModal');
-        const closeBtn = document.querySelector('.close-btn');
-        const searchInput = document.getElementById("citySearch");
-        const searchIcon = document.querySelector(".search-icon");
-      
-        regionBtn.addEventListener('click', () => {
-          cityModal.classList.remove('hidden');
-        });
-      
-        closeBtn.addEventListener('click', () => {
+      const regionBtn = document.querySelector('.region-button');
+      const cityModal = document.getElementById('cityModal');
+      const closeBtn = document.querySelector('.close-btn');
+      const searchInput = document.getElementById("citySearch");
+      const searchIcon = document.querySelector(".search-icon");
+
+      // === ДОБАВЛЕНО: для заявки ===
+
+
+      regionBtn.addEventListener('click', () => {
+        cityModal.classList.remove('hidden');
+      });
+
+      closeBtn.addEventListener('click', () => {
+        cityModal.classList.add('hidden');
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === cityModal) {
           cityModal.classList.add('hidden');
-        });
-      
-        window.addEventListener('click', (e) => {
-          if (e.target === cityModal) {
-            cityModal.classList.add('hidden');
-          }
-        });
-      
-        searchInput.addEventListener("keydown", function (e) {
-          if (e.key === "Enter") {
-            e.preventDefault();
-            filterCities();
-          }
-        });
-      
-        searchIcon.addEventListener("click", function (e) {
+        }
+      });
+
+      searchInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
           e.preventDefault();
           filterCities();
+        }
+      });
+
+      searchIcon.addEventListener("click", function (e) {
+        e.preventDefault();
+        filterCities();
+      });
+
+
+
+
+
+
+    };
+
+
+
+
+
+        // 👇 Функция, которая обновляет оба места
+        function updateSelectedCity(city) {
+          document.getElementById('cityHeader').innerText = city;
+          document.getElementById('cityTariff').innerText = city;
+        }
+
+
+
+        document.addEventListener('click', function (e) {
+          if (e.target.classList.contains('city-item')) {
+            const selectedCity = e.target.innerText;
+
+            // обновляем названия в шапке и тарифах
+            updateSelectedCity(selectedCity);
+            closeCityModal();
+
+            // снимаем выделение с других городов
+            document.querySelectorAll('.city-item').forEach(el => el.classList.remove('active'));
+
+            // добавляем выделение текущему
+            e.target.classList.add('active');
+          }
         });
-      };
 
 
-
-      document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("city-item")) {
-      const cityName = e.target.textContent;
-      document.getElementById("selectedCity").textContent = cityName;
-      document.getElementById("cityModal").classList.add("hidden");
-    }
-  });
 
 
 
 
 
       </script>
+
+
+
+      <!-- МОДАЛКА ПОДКЛЮЧЕНИЯ -->
+      <div id="connectModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="modal-close" id="closeModalBtn">&times;</span>
+          <h2>Оставьте заявку на подключение</h2>
+          <form>
+            <input type="text" placeholder="Имя" required>
+            <input type="tel" placeholder="+7 (___) ___-__-__" required>
+            <select>
+              <option>Ещё не определился</option>
+              <option>Интернет</option>
+              <option>ТВ</option>
+            </select>
+            <button type="submit">Отправить</button>
+            <p class="note">Важно: частные дома не подключаем!</p>
+          </form>
+        </div>
+      </div>
+
+
+
+
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const connectBtns = document.querySelectorAll('.connect-btn');
+          const connectModal = document.getElementById('connectModal');
+          const closeModalBtn = document.getElementById('closeModalBtn');
+      
+          connectBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.preventDefault();
+              connectModal.classList.remove('hidden');
+            });
+          });
+      
+          closeModalBtn.addEventListener('click', () => {
+            connectModal.classList.add('hidden');
+          });
+      
+          window.addEventListener('click', (e) => {
+            if (e.target === connectModal) {
+              connectModal.classList.add('hidden');
+            }
+          });
+        });
+      </script>
+      
+      
+
+
+      
+      
+      
 
 </body>
 </html>
