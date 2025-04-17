@@ -20,5 +20,6 @@ urlpatterns = [
     path('api/tariffs/<int:region_id>/', views.get_tariffs_by_region, name='tariffs_by_region'),
     path('api/regions/', views.get_regions, name='regions'),
     path('api/towns/', views.get_towns, name='towns'),
+    
 
 ] 

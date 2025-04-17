@@ -239,6 +239,8 @@
     // Функция для рендеринга тарифных карточек
     function renderTariffs(tariffs) {
       const container = document.getElementById('tariffCardsContainer');
+      const phoneFrameSrc = "/static/img/phone-frame.png"; // путь к картинке без тега
+
       
       if (tariffs.length === 0) {
         container.innerHTML = '<div class="col-12 text-center py-4">Тарифы не найдены</div>';
@@ -257,8 +259,12 @@
         }
 
         html += `
-          <div class="col-lg-4 col-md-6 mb-4" data-tariff-type="${tariffType}">
-            <div class="tariff-card">
+          <div class="col-lg-3 col-md-6 mb-4" data-tariff-type="${tariffType}">
+            <div class="phone-frame">
+              <img src="${phoneFrameSrc}" alt="Phone Frame" class="phone-image">
+              <div class="phone-content">
+                <div class="tariff-card">
+
               <div class="tariff-card-header">
                 <h3 class="tariff-name">${tariff.name}</h3>
                 <div class="tariff-price-wrapper">
@@ -330,6 +336,8 @@
                 Подключить за ${tariff.current_price} ₽
               </button>
               <a href="#" class="details-link">Подробнее</a>
+                </div>
+              </div>
             </div>
           </div>
         `;
@@ -466,13 +474,16 @@
             <h2>Проверьте ваш адрес на возможность<br>подключения к МегаФон</h2>
             <p class="subtitle">А всю остальную работу сделаем мы</p>
     
-            <form class="address-form">
+            <div class="form-wrapper">
+              <form class="address-form">
                 <input type="text" placeholder="Город, улица, дом">
                 <input type="tel" placeholder="+7 (___) ___-__-__">
                 <button type="submit">Проверить</button>
-            </form>
-    
-            <p class="note">Важно: частные дома не подключаем!</p>
+              </form>
+            
+              <p class="note">Важно: частные дома не подключаем!</p>
+            </div>
+            
             </div>
     
             <img class="absolute-image" src="../static/img/puzzle.png" alt="Пазлы">
@@ -1033,6 +1044,17 @@
             minutes: 1200,
             gigabytes: 50,
             megasila_count: 2
+          },
+          {
+            id: 4,
+            name: "Гигабитный Экспресс",
+            old_price: "1000",
+            current_price: "780",
+            duration_days: "30",
+            speed_mbps: "1000",
+            is_home_internet: true,
+            gigabytes: 100,
+            megasila_count: 3
           }
         ];
 
@@ -1445,6 +1467,17 @@
         });
       });
       </script>
+
+      <script>
+        const burger = document.getElementById('burger-toggle');
+        const menu = document.getElementById('mobileMenu');
+
+        burger.addEventListener('click', () => {
+          menu.classList.toggle('active');
+        });
+      </script>
+
+
     </body>
     </html>
 
