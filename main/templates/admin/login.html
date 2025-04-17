@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход в админку</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.6s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.9rem;
+            margin: 0.5rem 0 1rem;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: #dc3545;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>Вход</h2>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Логин" required>
+        <input type="password" name="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+    </form>
+</div>
+</body>
+</html>

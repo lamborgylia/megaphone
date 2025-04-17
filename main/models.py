@@ -1,20 +1,56 @@
 from django.db import models
 
-class Tariff(models.Model):
-    title = models.CharField(max_length=255)  # Название тарифа
-    price = models.IntegerField()
-    old_price = models.IntegerField(blank=True, null=True)
-    duration_days = models.IntegerField(default=30)
-    internet_speed = models.CharField(max_length=100)
-    mobile_gb = models.CharField(max_length=100, blank=True)
-    tv_channels = models.CharField(max_length=100, blank=True)
-    minutes = models.CharField(max_length=100, blank=True)
-    options = models.TextField(blank=True)  # Например: "3 МегаСилы", "Домашний интернет"
-    is_promo = models.BooleanField(default=False)
-    promo_label = models.CharField(max_length=100, blank=True)
-    button_color = models.CharField(max_length=20, default="#00B259")
-    highlight_color = models.CharField(max_length=20, default="#F0F0F0")
-    order = models.IntegerField(default=0)
+# models.py
+class Region(models.Model):
+    name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.title
+        return self.name
+
+
+class Town(models.Model):
+    name = models.CharField(max_length=100)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='localities')
+
+    def __str__(self):
+        return f"{self.name} ({self.region.name})"
+
+
+class Tariff(models.Model):
+    name = models.CharField(max_length=255)
+    old_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    current_price = models.DecimalField(max_digits=6, decimal_places=2)
+    duration_days = models.PositiveIntegerField(default=30)
+    is_home_internet = models.BooleanField(default=False)
+    home_internet_note = models.CharField(max_length=255, null=True, blank=True)
+    speed_mbps = models.PositiveIntegerField(null=True, blank=True)
+    minutes = models.PositiveIntegerField(null=True, blank=True)
+    gigabytes = models.PositiveIntegerField(null=True, blank=True)
+    megasila_count = models.PositiveIntegerField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE, related_name='tariffs')
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']  # сортировка по умолчанию
+        
+    def __str__(self):
+        return f"{self.name} - {self.region.name}"
+
+class ConnectionRequest(models.Model):
+    phone_number = models.CharField(max_length=20)
+    address = models.TextField(blank=True, null=True)  # не обязательное поле
+    submitted_at = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('new', 'Новая'),
+            ('in_progress', 'В работе'),
+            ('done', 'Обработана')
+        ],
+        default='new'
+    )
+    tariff = models.ForeignKey('Tariff', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.phone_number} - {self.address[:30] if self.address else 'Без адреса'}"

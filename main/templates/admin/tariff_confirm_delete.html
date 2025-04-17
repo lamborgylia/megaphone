@@ -1,0 +1,14 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Удаление тарифа{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Удалить тариф</h3>
+    <p>Вы уверены, что хотите удалить тариф <strong>{{ tariff.name }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'admin_tariffs' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

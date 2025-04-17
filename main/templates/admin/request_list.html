@@ -1,0 +1,62 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Заявки — Админка{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <h2 class="mb-4">📬 Список заявок</h2>
+
+    {% if requests %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle bg-white shadow-sm">
+                <thead class="table-primary">
+                    <tr>
+                        <th>ID</th>
+                        <th>Телефон</th>
+                        <th>Адрес</th>
+                        <th>Тариф</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Изменить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in requests %}
+                        <tr>
+                            <td>{{ r.id }}</td>
+                            <td>{{ r.phone_number }}</td>
+                            <td>{{ r.address|default:"—" }}</td>
+                            <td>
+                                {% if r.tariff %}
+                                    {{ r.tariff.name }}
+                                {% else %}
+                                    —
+                                {% endif %}
+                            </td>
+                            <td>{{ r.submitted_at|date:"d.m.Y H:i" }}</td>
+                            <td>
+                                <span class="badge bg-{% if r.status == 'new' %}secondary{% elif r.status == 'in_progress' %}warning{% else %}success{% endif %}">
+                                    {{ r.get_status_display }}
+                                </span>
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'admin_update_request_status' r.id %}" class="d-flex align-items-center gap-2">
+                                    {% csrf_token %}
+                                    <select name="status" class="form-select form-select-sm w-auto">
+                                        <option value="new" {% if r.status == 'new' %}selected{% endif %}>Новая</option>
+                                        <option value="in_progress" {% if r.status == 'in_progress' %}selected{% endif %}>В работе</option>
+                                        <option value="done" {% if r.status == 'done' %}selected{% endif %}>Обработана</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-sm btn-primary">Сохранить</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">Заявок пока нет.</div>
+    {% endif %}
+</div>
+{% endblock %}

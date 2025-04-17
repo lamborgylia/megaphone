@@ -1,639 +1,1451 @@
-<!-- ВРЕМЕННАЯ ШАПКА ДЛЯ ОТКРЫТИЯ ЧЕРЕЗ HTML -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>МегаФон — Интернет и ТВ</title>
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <header class="header">
-      <div class="header-top">
+{% extends "base.html" %}
 
-        <!-- ЛЕВАЯ часть -->
-        <div class="header-left">
-          <div class="logo">
-            <img src="../static/img/logo.svg" alt="МегаФон">
-            <div class="partner">официальный партнёр</div>
-          </div>
-          <nav class="top-nav">
-            <a href="#">Для дома</a>
-            <a href="#">Для бизнеса</a>
-            <a href="#">Личный кабинет</a>
-          </nav>
-        </div>
-      
-        <!-- ЦЕНТРАЛЬНАЯ часть -->
-        <div class="header-center">
-          <div class="support-info">
-            <div class="support-block">
-              <span class="support-label">Подключение</span>
-              <span class="support-number">+7 937 657 54 58</span>
+{% block title %}МегаФон{% endblock %}
+
+{% block content %}
+
+
+    <!-- КАРУСЕЛЬ Bootstrap -->
+    <div id="megafonCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+    
+        <!-- Слайд 1 -->
+        <div class="carousel-item active">
+            <div class="carousel-content">
+            <div class="left">
+                <h2>Активируй МегаСилы</h2>
+                <p>Безлимиты, бонусные ГБ и другие опции</p>
+                <a href="#" class="btn-custom">Подробнее</a>
             </div>
-            <div class="support-block">
-              <span class="support-label">Техподдержка</span>
-              <span class="support-number">8 800 550 00 01</span>
+            <div class="right">
+                <img src="../static/img/Frame 1.png" class="floating-img" alt="Активируй МегаСилы" />
             </div>
-            <div class="support-icons">
-              <a href="#"><img src="../static/img/whatsapp-icon.png" alt="WhatsApp"></a>
-              <a href="#"><img src="../static/img/telegram-icon.png" alt="Telegram"></a>
             </div>
-          </div>
         </div>
-      
-        <!-- ПРАВАЯ часть -->
-        <div class="region-dropdown">
-          <button class="region-button">
-            <img src="../static/img/location-icon.jpg" alt="Локация">
-            <span id="selectedCity">г Самара</span>
-          </button>
-          <a href="#" class="connect-btn">ПОДКЛЮЧИТЬСЯ</a>
+    
+        <!-- Слайд 2 -->
+        <div class="carousel-item">
+            <div class="carousel-content">
+            <div class="left">
+                <h2>Интернет для дома</h2>
+                <p>Стабильный, быстрый, доступный — подключай прямо сейчас</p>
+                <a href="#" class="btn-custom">Выбрать тариф</a>
+            </div>
+            <div class="right">
+                <img src="../static/img/forhome.png" class="floating-img" alt="Интернет для дома" />
+            </div>
+            </div>
         </div>
-      
-      </div>
-      
-
-        <nav class="bottom-nav">
-            <a href="#">Тарифы</a>
-            <a href="#">Услуги</a>
-            <a href="#">Поддержка</a>
-            <a href="#">Приложение</a>
-        </nav>
-    </header>
-
-
-
-<!-- КАРУСЕЛЬ Bootstrap -->
-<div id="megafonCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-  
-      <!-- Слайд 1 -->
-      <div class="carousel-item active">
-        <div class="carousel-content">
-          <div class="left">
-            <h2>Активируй МегаСилы</h2>
-            <p>Безлимиты, бонусные ГБ и другие опции</p>
-            <a href="#" class="btn-custom">Подробнее</a>
-          </div>
-          <div class="right">
-            <img src="../static/img/Frame 1.png" class="floating-img" alt="Активируй МегаСилы" />
-          </div>
+    
+        <!-- Слайд 3 -->
+        <div class="carousel-item">
+            <div class="carousel-content">
+            <div class="left">
+                <h2>Мобильный<br>оператор №1</h2>
+                <p>По скорости и покрытию</p>
+                <a href="#" class="btn-custom">Подробнее</a>
+            </div>
+            <div class="right">
+                <img src="../static/img/banner3.png" class="floating-img" alt="Мобильный оператор №1" />
+            </div>
+            </div>
         </div>
-      </div>
-  
-      <!-- Слайд 2 -->
-      <div class="carousel-item">
-        <div class="carousel-content">
-          <div class="left">
-            <h2>Интернет для дома</h2>
-            <p>Стабильный, быстрый, доступный — подключай прямо сейчас</p>
-            <a href="#" class="btn-custom">Выбрать тариф</a>
-          </div>
-          <div class="right">
-            <img src="../static/img/forhome.png" class="floating-img" alt="Интернет для дома" />
-          </div>
+    
+        </div> 
+    
+        <!-- Кнопки-переключатели -->
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
         </div>
-      </div>
-  
-      <!-- Слайд 3 -->
-      <div class="carousel-item">
-        <div class="carousel-content">
-          <div class="left">
-            <h2>Мобильный<br>оператор №1</h2>
-            <p>По скорости и покрытию</p>
-            <a href="#" class="btn-custom">Подробнее</a>
-          </div>
-          <div class="right">
-            <img src="../static/img/banner3.png" class="floating-img" alt="Мобильный оператор №1" />
-          </div>
-        </div>
-      </div>
-  
-    </div> 
-  
-    <!-- Кнопки-переключатели -->
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#megafonCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
     </div>
-  </div>
 
-  <section class="tariff-section">
-    <div class="container">
-      <div class="tariff-header d-flex flex-wrap align-items-center mb-3">
-        <h2 class="tariff-title me-2">Тарифы для твоего региона:</h2>
-        <span class="region-name">Самара</span>
+    <!-- ТАРИФЫ -->
+    <section class="tariff-section py-5">
+      <div class="container">
+        <div class="tariff-header d-flex flex-wrap align-items-center mb-4">
+          <h2 class="tariff-title">
+            Тарифы для твоего региона: <span id="cityTariff">г Самара</span>
+          </h2>
+        </div>
+        
+        <div class="tariff-filters d-flex flex-wrap gap-3 mb-4">
+          <button class="filter-btn active" data-filter="all">Все тарифы</button>
+          <button class="filter-btn" data-filter="internet-mobile-tv">Интернет, мобильная связь + ТВ</button>
+          <button class="filter-btn" data-filter="internet-tv">Интернет + ТВ</button>
+        </div>
+
+        <div class="tariff-cards row" id="tariffCardsContainer">
+          <!-- Tariff cards will be dynamically loaded here -->
+          <div class="col-12 text-center py-4">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
       </div>
-  
-      <div class="tariff-filters d-flex flex-wrap gap-3">
-        <button class="btn active">Все тарифы</button>
-        <button class="btn">Интернет, мобильная связь + ТВ</button>
-        <button class="btn">Интернет + ТВ</button>
-      </div>     
+    </section>
 
+    <!-- CSS for Tariff Cards -->
+    <!-- Обновленный HTML для карточки тарифа -->
+    <style>
+      .tariff-card {
+        background: white;
+        border-radius: 16px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .tariff-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .tariff-card-header {
+        padding: 15px;
+        margin: -20px -20px 15px -20px;
+        background-color: #f0faf2;
+        border-radius: 16px 16px 0 0;
+      }
+
+      .tariff-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+
+      .tariff-price-wrapper {
+        display: flex;
+        align-items: baseline;
+      }
+
+      .tariff-price-old {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 16px;
+        margin-right: 8px;
+      }
+
+      .tariff-price-current {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a1a1a;
+      }
+
+      .tariff-duration {
+        font-size: 14px;
+        color: #666;
+        margin-top: 2px;
+        margin-bottom: 15px;
+      }
+
+      .feature-row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .feature-icon {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+        color: #006838;
+        flex-shrink: 0;
+      }
+
+      .feature-icon.green {
+        color: #00b956;
+      }
+
+      .feature-icon.purple {
+        color: #731982;
+      }
+
+      .feature-text {
+        font-size: 14px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .feature-promo {
+        background-color: #f0f6ff;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 12px;
+        color: #731982;
+        display: inline-block;
+        margin-left: 8px;
+      }
+
+      .megasila-feature {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px dashed #eee;
+        display: flex;
+        align-items: center;
+      }
+
+      .megasila-icon {
+        color: #731982;
+        margin-right: 10px;
+      }
+
+      .connect-btn {
+        background-color: #00b956;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.3s ease;
+        margin-top: 15px;
+      }
+
+      .connect-btn-purple {
+        background-color: #731982;
+      }
+
+      .connect-btn:hover {
+        opacity: 0.9;
+      }
+
+      .details-link {
+        display: block;
+        text-align: center;
+        color: #00b956;
+        margin-top: 10px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .details-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+
+    <!-- JavaScript для обновления карточек тарифов -->
+    <script>
+    // Функция для рендеринга тарифных карточек
+    function renderTariffs(tariffs) {
+      const container = document.getElementById('tariffCardsContainer');
       
-    </div>
-  </section>
-  
+      if (tariffs.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center py-4">Тарифы не найдены</div>';
+        return;
+      }
 
-            <!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ГОРОДА -->
-            <div class="city-modal hidden" id="cityModal">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h2>Выберите ваш город</h2>
-                  <span class="close-btn" onclick="closeCityModal()">&times;</span>
+      let html = '';
+      
+      tariffs.forEach(tariff => {
+        // Определяем тип тарифа для фильтрации
+        let tariffType = '';
+        if (tariff.speed_mbps && tariff.minutes && tariff.tv_channels) {
+          tariffType = 'internet-mobile-tv';
+        } else if (tariff.speed_mbps && tariff.tv_channels) {
+          tariffType = 'internet-tv';
+        }
+
+        html += `
+          <div class="col-lg-4 col-md-6 mb-4" data-tariff-type="${tariffType}">
+            <div class="tariff-card">
+              <div class="tariff-card-header">
+                <h3 class="tariff-name">${tariff.name}</h3>
+                <div class="tariff-price-wrapper">
+                  ${tariff.old_price ? `<span class="tariff-price-old">${tariff.old_price} ₽</span>` : ''}
+                  <span class="tariff-price-current">${tariff.current_price} ₽</span>
                 </div>
-
-                <div class="modal-search">
-                  <form id="citySearchForm" onsubmit="event.preventDefault(); filterCities();">
-                    <input type="text" placeholder="Или введите его название" id="citySearch">
-                    <button type="submit" class="search-icon">🔍</button>
-                  </form>
-                </div>
-                
-                
-
-                <div class="modal-body">
-                  <div class="regions-list">
-                    <div class="region-group">
-                      <div class="region-letter">А</div>
-                      <div class="region-item" onclick="showCities('Астраханская область')">Астраханская область</div>
-                    </div>
-                    <div class="region-group">
-                      <div class="region-letter">Б</div>
-                      <div class="region-item" onclick="showCities('Белгородская область')">Белгородская область</div>
-                    </div>
-                    <div class="region-group">
-                      <div class="region-letter">В</div>
-                      <div class="region-item" onclick="showCities('Воронежская область')">Воронежская область</div>
-                    </div>
-                    <div class="region-group">
-                      <div class="region-letter">К</div>
-                      <div class="region-item" onclick="showCities('Калининградская область')">Калининградская область</div>
-                      <div class="region-item" onclick="showCities('Краснодарский край')">Краснодарский край</div>
-                      <div class="region-item" onclick="showCities('Курская область')">Курская область</div>
-                    </div>
-                    <div class="region-group">
-                      <div class="region-letter">М</div>
-                      <div class="region-item" onclick="showCities('Москва')">Москва</div>
-                    </div>
-                  </div>
-
-                  <div class="cities-list" id="citiesColumn">
-                    <div class="city-placeholder">Выберите область слева</div>
-                  </div>
-                </div>
+                <div class="tariff-duration">за ${tariff.duration_days} дней</div>
               </div>
-            </div>
-
-            <style>
-            .city-modal {
-              position: fixed;
-              top: 0; left: 0;
-              width: 100%; height: 100%;
-              background: rgba(0, 0, 0, 0.5);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              z-index: 1000;
-            }
-            .modal-content {
-              background: white;
-              width: 80%;
-              max-width: 1000px;
-              border-radius: 8px;
-              padding: 20px;
-              max-height: 90vh;
-              overflow: auto;
-            }
-            .modal-header {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              margin-bottom: 15px;
-            }
-            .modal-search {
-              position: relative;
-              margin-bottom: 20px;
-            }
-            .modal-search input {
-              width: 100%;
-              padding: 10px 40px 10px 10px;
-              font-size: 16px;
-            }
-            .search-icon {
-              position: absolute;
-              right: 10px;
-              top: 50%;
-              transform: translateY(-50%);
-              font-size: 18px;
-            }
-            .modal-body {
-              display: flex;
-              gap: 40px;
-            }
-            .regions-list, .cities-list {
-              width: 50%;
-              max-height: 400px;
-              overflow-y: auto;
-            }
-            .region-letter {
-              color: red;
-              font-weight: bold;
-              margin-top: 15px;
-            }
-            .region-item {
-              cursor: pointer;
-              padding: 4px 0;
-            }
-            .region-item:hover {
-              text-decoration: underline;
-            }
-            .city-item {
-              padding: 4px 0;
-            }
-            .city-placeholder {
-              color: #888;
-              font-style: italic;
-            }
-            .hidden {
-              display: none !important;
-            }
-            </style>
-
-
-
-
-
-  
-
-
-  <!-- 🔽 ВСТАВЬ СЮДА СЕКЦИЮ ПРОВЕРКИ АДРЕСА -->
-  <section class="address-check">
-    <div class="container-custom">
-      <div class="address-card">
-        <div class="content">
-          <h2>Проверьте ваш адрес на возможность<br>подключения к МегаФон</h2>
-          <p class="subtitle">А всю остальную работу сделаем мы</p>
-  
-          <form class="address-form">
-            <input type="text" placeholder="Город, улица, дом">
-            <input type="tel" placeholder="+7 (___) ___-__-__">
-            <button type="submit">Проверить</button>
-          </form>
-  
-          <p class="note">Важно: частные дома не подключаем!</p>
-        </div>
-  
-        <img class="absolute-image" src="../static/img/puzzle.png" alt="Пазлы">
-      </div>
-    </div>
-  </section>
-
-
-
-  <section class="steps-section">
-    <div class="container">
-      <div class="steps-header">
-        <h2 class="steps-title">Как подключить интернет</h2>
-        <div class="steps-list">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>Оставьте заявку</h3>
-            <p>Оставьте заявку на подключение на сайте или просто позвоните нам</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>Проверим адрес</h3>
-            <p>Проверим ваш адрес на возможность подключения</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>Подберем тариф</h3>
-            <p>Проконсультируем и подберем оптимальный тарифный план</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number active">4</div>
-            <h3>Подключим</h3>
-            <p>Произведем подключение в удобное для вас время</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  
-  <section class="faq-section py-5">
-    <div class="container">
-      <h2 class="faq-title mb-4">Частые вопросы</h2>
-      <div class="accordion custom-accordion" id="faqAccordion">
-  
-        <!-- Вопрос 1 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
-              Как оставить заявку на подключение МегаФон?
-            </button>
-          </h2>
-          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Оставить заявку вы можете, позвонив по номеру телефона <strong class="purple">8 (800) 250-93-87</strong> или оставить заявку на сайте.
+              
+              ${tariff.is_home_internet ? `
+                <div class="feature-row">
+                  <div class="feature-icon green">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m8 14 2 2 6-6"></path></svg>
+                  </div>
+                  <div class="feature-text">
+                    Домашний интернет
+                    ${tariff.home_internet_note ? `<span class="feature-promo">${tariff.home_internet_note}</span>` : ''}
+                  </div>
+                </div>
+              ` : ''}
+              
+              ${tariff.speed_mbps ? `
+                <div class="feature-row">
+                  <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12" y2="20"></line></svg>
+                  </div>
+                  <div class="feature-text">${tariff.speed_mbps} Мбит/с</div>
+                </div>
+              ` : ''}
+              
+              ${tariff.minutes ? `
+                <div class="feature-row">
+                  <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                  </div>
+                  <div class="feature-text">${tariff.minutes} минут</div>
+                </div>
+              ` : ''}
+              
+              ${tariff.gigabytes ? `
+                <div class="feature-row">
+                  <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                  </div>
+                  <div class="feature-text">${tariff.gigabytes} ГБ</div>
+                </div>
+              ` : ''}
+              
+              ${tariff.tv_channels ? `
+                <div class="feature-row">
+                  <div class="feature-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>
+                  </div>
+                  <div class="feature-text">${tariff.tv_channels} ТВ-каналов</div>
+                </div>
+              ` : ''}
+              
+              ${tariff.megasila_count ? `
+                <div class="megasila-feature">
+                  <div class="megasila-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  </div>
+                  <div class="feature-text">${tariff.megasila_count} МегаСилы на выбор</div>
+                </div>
+              ` : ''}
+              
+              <button class="connect-btn ${tariff.name.includes('МегаТариф') ? 'connect-btn-purple' : ''}" 
+                data-tariff-id="${tariff.id}" data-tariff-name="${tariff.name}" data-tariff-price="${tariff.current_price}">
+                Подключить за ${tariff.current_price} ₽
+              </button>
+              <a href="#" class="details-link">Подробнее</a>
             </div>
           </div>
-        </div>
-  
-        <!-- Вопрос 2 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-              Как узнать свой лицевой счёт?
-            </button>
-          </h2>
-          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Номер телефона — это ваш лицевой счёт. С его помощью можно оплатить услуги, войти в личный кабинет и в МегаФон ТВ.
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 3 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-              Как проверить баланс?
-            </button>
-          </h2>
-          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Проверить баланс можно в голосовом меню (позвонив на <strong>0500</strong>), с помощью USSD команды <code>*100#</code> или в личном кабинете.
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 4 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
-              Как пополнить счёт?
-            </button>
-          </h2>
-          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              <ul>
-                <li>В личном кабинете банковской картой, со счёта мобильного телефона, с помощью электронного кошелька.</li>
-                <li>В приложении Сбербанк Онлайн — раздел «Платежи или переводы», раздел «Интернет и ТВ», указать МегаФон, ввести номер лицевого счёта и сумму.</li>
-                <li>В терминалах Qiwi, CyberPlat, Элекснет, банкоматах и салонах связи: МегаФон Ритейл, Связной.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 5 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
-              Как перейти в МегаФон со своим номером?
-            </button>
-          </h2>
-          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Вы можете, позвонив по номеру <strong class="purple">8 (800) 250-93-87</strong> или оставить заявку на сайте.<br><br>
-              <strong>Условия переноса номера:</strong>
-              <ul>
-                <li>На поданный номер оформлено либо доверенность прилагается.</li>
-                <li>Контактные данные и паспортные соответствуют текущим данным.</li>
-                <li>Нет задолженности.</li>
-                <li>Номер не заблокирован, не в розыске, не корпоративный.</li>
-                <li>С момента последнего переноса прошло более 60 дней.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 6 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
-              Куда мне обращаться, если возникают проблемы при пользовании услугой?
-            </button>
-          </h2>
-          <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Обратитесь по номеру <strong class="purple">8 (800) 250-93-87</strong>. Мы будем рады вам помочь!
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 7 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
-              Какой тариф МегаФон самый выгодный?
-            </button>
-          </h2>
-          <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              На текущий момент самыми выгодными тарифами считаются МегаФон БезПереплат и МегаТариф. Подключение — по номеру <strong class="purple">8 (800) 250-93-87</strong> или на сайте.
-            </div>
-          </div>
-        </div>
-  
-        <!-- Вопрос 8 -->
-        <div class="accordion-item">
-          <h2 class="accordion-header">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
-              Какой тариф домашнего интернета выбрать?
-            </button>
-          </h2>
-          <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-            <div class="accordion-body">
-              Обратите внимание на тарифы МегаФон и его тариф БезПереплат и МегаТариф, с возможностью выбора. Подключение по номеру <strong class="purple">8 (800) 250-93-87</strong> или на сайте.
-            </div>
-          </div>
-        </div>
-  
-      </div>
-    </div>
-  </section>
-  
-
-
-
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
-    <script>
-      regionBtn = document.querySelector('.region-button');
-      cityModal = document.getElementById('cityModal');
-
-    
-      regionBtn.addEventListener('click', () => {
-        cityModal.classList.remove('hidden');
+        `;
       });
-    
-      function closeCityModal() {
-        cityModal.classList.add('hidden');
-      }
-    
-      function filterCities() {
-        const input = document.getElementById("citySearch").value.toLowerCase();
-        const items = document.querySelectorAll("#cityList li");
-        items.forEach(li => {
-          li.style.display = li.textContent.toLowerCase().includes(input) ? "block" : "none";
+      
+      container.innerHTML = html;
+      
+      // Добавляем клик на кнопки подключения
+      document.querySelectorAll('.connect-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const tariffId = btn.getAttribute('data-tariff-id');
+          const tariffName = btn.getAttribute('data-tariff-name');
+          const tariffPrice = btn.getAttribute('data-tariff-price');
+          showConnectModal(tariffId, tariffName, tariffPrice);
         });
-      }
-    
-      // Закрытие модалки по клику вне окна
-      window.addEventListener('click', function(e) {
-        if (e.target === cityModal) {
-          cityModal.classList.add('hidden');
-        }
       });
+    }
     </script>
+    
+
+                <!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ГОРОДА -->
+                <div class="city-modal hidden" id="cityModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h2>Выберите ваш город</h2>
+                    <span class="close-btn" onclick="closeCityModal()">&times;</span>
+                    </div>
+
+                    <div class="modal-search">
+                    <form id="citySearchForm" onsubmit="event.preventDefault(); filterCities();">
+                        <input type="text" placeholder="Или введите его название" id="citySearch">
+                        <button type="submit" class="search-icon">🔍</button>
+                    </form>
+                    </div>
+                    
+                    
+
+                    <div class="modal-body">
+                    <div class="regions-list" id="regionsList">
+                        <!-- Регионы будут подгружены через AJAX -->
+                        <div class="region-placeholder">Загрузка регионов...</div>
+                    </div>
+
+                    <div class="cities-list" id="citiesColumn">
+                        <div class="city-placeholder">Выберите область слева</div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+
+                <style>
+                .city-modal {
+                position: fixed;
+                top: 0; left: 0;
+                width: 100%; height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                }
+                .modal-content {
+                background: white;
+                width: 80%;
+                max-width: 1000px;
+                border-radius: 8px;
+                padding: 20px;
+                max-height: 90vh;
+                overflow: auto;
+                }
+                .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 15px;
+                }
+                .modal-search {
+                position: relative;
+                margin-bottom: 20px;
+                }
+                .modal-search input {
+                width: 100%;
+                padding: 10px 40px 10px 10px;
+                font-size: 16px;
+                }
+                .search-icon {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 18px;
+                }
+                .modal-body {
+                display: flex;
+                gap: 40px;
+                }
+                .regions-list, .cities-list {
+                width: 50%;
+                max-height: 400px;
+                overflow-y: auto;
+                }
+                .region-letter {
+                color: red;
+                font-weight: bold;
+                margin-top: 15px;
+                }
+                .region-item {
+                cursor: pointer;
+                padding: 4px 0;
+                }
+                .region-item:hover {
+                text-decoration: underline;
+                }
+                .city-item {
+                padding: 4px 0;
+                }
+                .city-placeholder {
+                color: #888;
+                font-style: italic;
+                }
+                .hidden {
+                display: none !important;
+                }
+                </style>
 
 
 
-
-    <footer class="footer">
-      <div class="container-footer">
-        <div class="footer-col">
-          <img src="../static/img/logo.svg" alt="МегаФон" class="footer-logo" />
-          <div class="footer-partner">официальный партнёр</div>
-          <p class="footer-description">
-            Мегафон: самые популярные тарифы и предложения: домашний интернет, телевидение, пакеты с мобильной связью, а также подключение услуг для бизнеса.
-          </p>
-          <small class="footer-copy">Сайт официального партнёра ПАО «МегаФон». Политика конфиденциальности</small>
+    <!-- 🔽 ВСТАВЬ СЮДА СЕКЦИЮ ПРОВЕРКИ АДРЕСА -->
+    <section class="address-check">
+        <div class="container-custom">
+        <div class="address-card">
+            <div class="content">
+            <h2>Проверьте ваш адрес на возможность<br>подключения к МегаФон</h2>
+            <p class="subtitle">А всю остальную работу сделаем мы</p>
+    
+            <form class="address-form">
+                <input type="text" placeholder="Город, улица, дом">
+                <input type="tel" placeholder="+7 (___) ___-__-__">
+                <button type="submit">Проверить</button>
+            </form>
+    
+            <p class="note">Важно: частные дома не подключаем!</p>
+            </div>
+    
+            <img class="absolute-image" src="../static/img/puzzle.png" alt="Пазлы">
         </div>
-
-        <div class="footer-col">
-          <h4>Тарифы на услуги Мегафон</h4>
-          <ul>
-            <li><a href="#">Мегафон домашний интернет</a></li>
-            <li><a href="#">Интернет и телевидение</a></li>
-            <li><a href="#">Интернет, мобильная связь и ТВ</a></li>
-            <li><a href="#">Интернет и мобильная связь</a></li>
-          </ul>
         </div>
+    </section>
 
-        <div class="footer-col">
-          <h4>Полезная информация</h4>
-          <ul>
-            <li><a href="#">Интернет для бизнеса</a></li>
-            <li><a href="#">Контакты</a></li>
-          </ul>
+
+
+    <section class="steps-section">
+        <div class="container">
+        <div class="steps-header">
+            <h2 class="steps-title">Как подключить интернет</h2>
+            <div class="steps-list">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>Оставьте заявку</h3>
+                <p>Оставьте заявку на подключение на сайте или просто позвоните нам</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>Проверим адрес</h3>
+                <p>Проверим ваш адрес на возможность подключения</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>Подберем тариф</h3>
+                <p>Проконсультируем и подберем оптимальный тарифный план</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number active">4</div>
+                <h3>Подключим</h3>
+                <p>Произведем подключение в удобное для вас время</p>
+            </div>
+            </div>
         </div>
-        
-        <div class="footer-col">
-          <h4>Отдел подключения</h4>
-          <div class="footer-button">
-            <button class="call-btn">Позвонить</button>
-          </div>
         </div>
-        
-      </div>
-    </footer>
+    </section>
+
+    
+    
+    <section class="faq-section py-5">
+        <div class="container">
+        <h2 class="faq-title mb-4">Частые вопросы</h2>
+        <div class="accordion custom-accordion" id="faqAccordion">
+    
+            <!-- Вопрос 1 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true">
+                Как оставить заявку на подключение МегаФон?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Оставить заявку вы можете, позвонив по номеру телефона <strong class="purple">8 (800) 250-93-87</strong> или оставить заявку на сайте.
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 2 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                Как узнать свой лицевой счёт?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Номер телефона — это ваш лицевой счёт. С его помощью можно оплатить услуги, войти в личный кабинет и в МегаФон ТВ.
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 3 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                Как проверить баланс?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Проверить баланс можно в голосовом меню (позвонив на <strong>0500</strong>), с помощью USSD команды <code>*100#</code> или в личном кабинете.
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 4 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                Как пополнить счёт?
+                </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                <ul>
+                    <li>В личном кабинете банковской картой, со счёта мобильного телефона, с помощью электронного кошелька.</li>
+                    <li>В приложении Сбербанк Онлайн — раздел «Платежи или переводы», раздел «Интернет и ТВ», указать МегаФон, ввести номер лицевого счёта и сумму.</li>
+                    <li>В терминалах Qiwi, CyberPlat, Элекснет, банкоматах и салонах связи: МегаФон Ритейл, Связной.</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 5 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                Как перейти в МегаФон со своим номером?
+                </button>
+            </h2>
+            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Вы можете, позвонив по номеру <strong class="purple">8 (800) 250-93-87</strong> или оставить заявку на сайте.<br><br>
+                <strong>Условия переноса номера:</strong>
+                <ul>
+                    <li>На поданный номер оформлено либо доверенность прилагается.</li>
+                    <li>Контактные данные и паспортные соответствуют текущим данным.</li>
+                    <li>Нет задолженности.</li>
+                    <li>Номер не заблокирован, не в розыске, не корпоративный.</li>
+                    <li>С момента последнего переноса прошло более 60 дней.</li>
+                </ul>
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 6 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq6">
+                Куда мне обращаться, если возникают проблемы при пользовании услугой?
+                </button>
+            </h2>
+            <div id="faq6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Обратитесь по номеру <strong class="purple">8 (800) 250-93-87</strong>. Мы будем рады вам помочь!
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 7 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq7">
+                Какой тариф МегаФон самый выгодный?
+                </button>
+            </h2>
+            <div id="faq7" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                На текущий момент самыми выгодными тарифами считаются МегаФон БезПереплат и МегаТариф. Подключение — по номеру <strong class="purple">8 (800) 250-93-87</strong> или на сайте.
+                </div>
+            </div>
+            </div>
+    
+            <!-- Вопрос 8 -->
+            <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq8">
+                Какой тариф домашнего интернета выбрать?
+                </button>
+            </h2>
+            <div id="faq8" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                Обратите внимание на тарифы МегаФон и его тариф БезПереплат и МегаТариф, с возможностью выбора. Подключение по номеру <strong class="purple">8 (800) 250-93-87</strong> или на сайте.
+                </div>
+            </div>
+            </div>
+    
+        </div>
+        </div>
+    </section>
+    
 
 
 
-    <script>
-      const citiesByRegion = {
-        'Астраханская область': ["г Астрахань", "г Нариманов"],
-        'Белгородская область': ["г Белгород", "г Губкин", "п Майский", "г Старый Оскол", "г Строитель", "к Шебекино"],
-        'Краснодарский край': ["г Сочи", "с Раздольное"],
-        'Курская область': ["г Курск", "д Ворошнево", "г Курчатов"],
-        'Воронежская область': ["г Воронеж"],
-        'Калининградская область': ["г Калининград", "пгт Янтарный"],
-        'Москва': ["г Москва", "г Зеленоград"]
-      };
-      
-      function showCities(region) {
-        const cities = citiesByRegion[region] || [];
-        const container = document.getElementById('citiesColumn');
-        container.innerHTML = cities.map(city => `<div class="city-item">${city}</div>`).join('');
-      }
-      
-      function closeCityModal() {
-        document.getElementById('cityModal').classList.add('hidden');
-      }
-      
-      function filterCities() {
-        const input = document.getElementById("citySearch").value.toLowerCase().trim();
-        const container = document.getElementById('citiesColumn');
-      
-        if (!input) {
-          container.innerHTML = '<div class="city-placeholder">Выберите область слева</div>';
-          return;
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <script>
+        // Глобальная переменная для хранения данных о регионах и городах
+        let regionsAndCities = {};
+
+        // Функция для загрузки регионов и городов с сервера
+        function loadRegionsAndCities() {
+            fetch('/api/regions-towns/')
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                regionsAndCities = data;
+                renderRegionsList();
+            })
+            .catch(error => {
+                console.error('Error fetching regions and cities:', error);
+                document.getElementById('regionsList').innerHTML = '<div class="region-placeholder">Ошибка при загрузке данных</div>';
+            });
         }
-      
-        const allCities = Object.entries(citiesByRegion).flatMap(([region, cities]) =>
-          cities.map(city => ({
-            region,
-            city,
-            cleanCity: city.replace(/^(г|пгт|п|д|с|к)\s/, '').toLowerCase()
-          }))
-        );
-      
-        const filtered = allCities.filter(({ cleanCity }) => cleanCity.includes(input));
-      
-        container.innerHTML = filtered.length > 0
-          ? filtered.map(({ city }) => `<div class="city-item">${city}</div>`).join('')
-          : '<div class="city-placeholder">Ничего не найдено</div>';
-      }
-      
-      window.onload = function () {
-        const regionBtn = document.querySelector('.region-button');
-        const cityModal = document.getElementById('cityModal');
-        const closeBtn = document.querySelector('.close-btn');
-        const searchInput = document.getElementById("citySearch");
-        const searchIcon = document.querySelector(".search-icon");
-      
-        regionBtn.addEventListener('click', () => {
-          cityModal.classList.remove('hidden');
-        });
-      
-        closeBtn.addEventListener('click', () => {
-          cityModal.classList.add('hidden');
-        });
-      
-        window.addEventListener('click', (e) => {
-          if (e.target === cityModal) {
+
+        // Функция для отображения списка регионов
+        function renderRegionsList() {
+            const regionsList = document.getElementById('regionsList');
+            
+            // Сортируем регионы по алфавиту
+            const sortedRegions = Object.keys(regionsAndCities).sort();
+            
+            let html = '';
+            let currentLetter = '';
+            
+            sortedRegions.forEach(region => {
+            // Получаем первую букву региона
+            const firstLetter = region.charAt(0).toUpperCase();
+            
+            // Если это новая буква, добавляем разделитель
+            if (firstLetter !== currentLetter) {
+                currentLetter = firstLetter;
+                html += `<div class="region-letter">${currentLetter}</div>`;
+            }
+            
+            html += `<div class="region-item" onclick="showCities('${region}')">${region}</div>`;
+            });
+            
+            regionsList.innerHTML = html;
+        }
+
+        // Функция для отображения городов выбранного региона  
+        function showCities(region) {
+            const cities = regionsAndCities[region] || [];
+            const container = document.getElementById('citiesColumn');
+            container.innerHTML = cities.map(city => `<div class="city-item">${city}</div>`).join('');
+        }
+        
+        function closeCityModal() {
+            document.getElementById('cityModal').classList.add('hidden');
+        }
+        
+        function filterCities() {
+            const input = document.getElementById("citySearch").value.toLowerCase().trim();
+            const container = document.getElementById('citiesColumn');
+        
+            if (!input) {
+            container.innerHTML = '<div class="city-placeholder">Выберите область слева</div>';
+            return;
+            }
+        
+            const allCities = Object.entries(regionsAndCities).flatMap(([region, cities]) =>
+            cities.map(city => ({
+                region,
+                city,
+                cleanCity: city.replace(/^(г|пгт|п|д|с|к)\s/, '').toLowerCase()
+            }))
+            );
+        
+            const filtered = allCities.filter(({ cleanCity }) => cleanCity.includes(input));
+        
+            container.innerHTML = filtered.length > 0
+            ? filtered.map(({ city }) => `<div class="city-item">${city}</div>`).join('')
+            : '<div class="city-placeholder">Ничего не найдено</div>';
+        }
+        
+        window.onload = function () {
+            const regionBtn = document.querySelector('.region-button');
+            const cityModal = document.getElementById('cityModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const searchInput = document.getElementById("citySearch");
+            const searchIcon = document.querySelector(".search-icon");
+
+            // Загружаем регионы и города при загрузке страницы
+            loadRegionsAndCities();
+
+            regionBtn.addEventListener('click', () => {
+            cityModal.classList.remove('hidden');
+            });
+
+            closeBtn.addEventListener('click', () => {
             cityModal.classList.add('hidden');
-          }
-        });
-      
-        searchInput.addEventListener("keydown", function (e) {
-          if (e.key === "Enter") {
+            });
+
+            window.addEventListener('click', (e) => {
+            if (e.target === cityModal) {
+                cityModal.classList.add('hidden');
+            }
+            });
+
+            searchInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                filterCities();
+            }
+            });
+
+            searchIcon.addEventListener("click", function (e) {
             e.preventDefault();
             filterCities();
+            });
+        };
+
+        // Функция, которая обновляет оба места
+        function updateSelectedCity(city) {
+            document.getElementById('cityHeader').innerText = city;
+            document.getElementById('cityTariff').innerText = city;
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.target.classList.contains('city-item')) {
+            const selectedCity = e.target.innerText;
+
+            // обновляем названия в шапке и тарифах
+            updateSelectedCity(selectedCity);
+            closeCityModal();
+
+            // снимаем выделение с других городов
+            document.querySelectorAll('.city-item').forEach(el => el.classList.remove('active'));
+
+            // добавляем выделение текущему
+            e.target.classList.add('active');
+            }
+        });
+        </script>
+
+        <footer class="footer">
+        <div class="container-footer">
+            <div class="footer-col">
+            <img src="../static/img/logo.svg" alt="МегаФон" class="footer-logo" />
+            <div class="footer-partner">официальный партнёр</div>
+            <p class="footer-description">
+                Мегафон: самые популярные тарифы и предложения: домашний интернет, телевидение, пакеты с мобильной связью, а также подключение услуг для бизнеса.
+            </p>
+            <small class="footer-copy">Сайт официального партнёра ПАО «МегаФон». Политика конфиденциальности</small>
+            </div>
+
+            <div class="footer-col">
+            <h4>Тарифы на услуги Мегафон</h4>
+            <ul>
+                <li><a href="#">Мегафон домашний интернет</a></li>
+                <li><a href="#">Интернет и телевидение</a></li>
+                <li><a href="#">Интернет, мобильная связь и ТВ</a></li>
+                <li><a href="#">Интернет и мобильная связь</a></li>
+            </ul>
+            </div>
+
+            <div class="footer-col">
+            <h4>Полезная информация</h4>
+            <ul>
+                <li><a href="#">Интернет для бизнеса</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+            </div>
+            
+            <div class="footer-col">
+            <h4>Отдел подключения</h4>
+            <div class="footer-button">
+                <button class="call-btn">Позвонить</button>
+            </div>
+            </div>
+            
+        </div>
+        </footer>
+
+      <!-- Модальное окно подключения -->
+      <div id="connectModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="modal-close" id="closeModalBtn">&times;</span>
+          <h2>Оставьте заявку на подключение</h2>
+          <form id="connectionForm" novalidate>
+            <input type="text" id="connectionName" name="name" placeholder="Имя" required>
+            <input type="tel" id="connectionPhone" name="phone" placeholder="+7 (___) ___-__-__" required>
+            <input type="text" id="connectionAddress" name="address" placeholder="Адрес (необязательно)">
+            <input type="hidden" id="connectionTariffId" name="tariff_id">
+            <button type="submit">Оставить заявку</button>
+            <p class="note">Важно: частные дома и дачи не подключаем!</p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Модальное окно успешной заявки -->
+      <div id="successModal" class="modal hidden">
+        <div class="modal-content success-content">
+          <h2>Заявка создана</h2>
+          <p>Наш специалист свяжется с вами в ближайшее время</p>
+          <button id="closeSuccessBtn" class="success-btn">Закрыть</button>
+        </div>
+      </div>
+
+      <!-- Стили для модальных окон -->
+      <style>
+        .modal {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 1050;
+        }
+
+        .modal-content {
+          background-color: #fff;
+          padding: 30px;
+          border-radius: 16px;
+          width: 90%;
+          max-width: 500px;
+          position: relative;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-close {
+          position: absolute;
+          top: 15px;
+          right: 20px;
+          font-size: 24px;
+          cursor: pointer;
+          color: #999;
+        }
+
+        .modal-content h2 {
+          margin-top: 0;
+          margin-bottom: 20px;
+          font-size: 22px;
+          color: #333;
+        }
+
+        .modal-content form {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .modal-content input,
+        .modal-content select {
+          margin-bottom: 15px;
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          font-size: 16px;
+        }
+
+        .modal-content button {
+          background-color: #00b956;
+          color: white;
+          border: none;
+          border-radius: 30px;
+          padding: 12px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        .modal-content button:hover {
+          background-color: #009a48;
+        }
+
+        .note {
+          margin-top: 15px;
+          font-size: 14px;
+          color: #888;
+          text-align: center;
+        }
+
+        .success-content {
+          text-align: center;
+          padding: 40px 30px;
+        }
+
+        .success-content h2 {
+          color: #00b956;
+          margin-bottom: 15px;
+        }
+
+        .success-content p {
+          margin-bottom: 25px;
+          font-size: 16px;
+          color: #555;
+        }
+
+        .success-btn {
+          background-color: #00b956;
+          color: white;
+          border: none;
+          border-radius: 30px;
+          padding: 12px 30px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          display: inline-block;
+        }
+
+        .hidden {
+          display: none !important;
+        }
+
+        /* Стили для валидации */
+        .invalid-feedback {
+          color: #dc3545;
+          font-size: 14px;
+          margin-top: -10px;
+          margin-bottom: 10px;
+        }
+
+        input.is-invalid {
+          border-color: #dc3545;
+        }
+      </style>
+
+      <!-- JavaScript для обработки форм -->
+      <script>
+
+        // 1. Добавим функцию загрузки тарифов
+      function loadTariffs() {
+        const container = document.getElementById('tariffCardsContainer');
+        
+        // Пример данных о тарифах (в реальности должны загружаться с сервера)
+        const sampleTariffs = [
+          {
+            id: 1,
+            name: "Интернет 100",
+            current_price: 450,
+            old_price: 550,
+            duration_days: 30,
+            is_home_internet: true,
+            speed_mbps: 100,
+            tv_channels: 0,
+            minutes: 0,
+            gigabytes: 0,
+            home_internet_note: "Выгодно"
+          },
+          {
+            id: 2,
+            name: "Интернет + ТВ",
+            current_price: 650,
+            old_price: 800,
+            duration_days: 30,
+            is_home_internet: true,
+            speed_mbps: 200,
+            tv_channels: 160,
+            minutes: 0,
+            gigabytes: 0,
+            megasila_count: 1
+          },
+          {
+            id: 3,
+            name: "МегаТариф Максимум",
+            current_price: 850,
+            old_price: 1100,
+            duration_days: 30,
+            is_home_internet: true,
+            speed_mbps: 300,
+            tv_channels: 230,
+            minutes: 1200,
+            gigabytes: 50,
+            megasila_count: 2
+          }
+        ];
+
+        // Имитация загрузки с сервера
+        setTimeout(() => {
+          renderTariffs(sampleTariffs);
+        }, 500);
+      }
+
+      // 2. Стилизация и функциональность фильтров тарифов
+      document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем стили для активных/неактивных кнопок фильтров
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .filter-btn {
+            background-color: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+          }
+          .filter-btn.active {
+            background-color: #731982;
+            color: white;
+            border-color: #731982;
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Обработчики для кнопок фильтров
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', function() {
+            // Убираем активный класс со всех кнопок
+            filterBtns.forEach(b => b.classList.remove('active'));
+            
+            // Добавляем активный класс на нажатую кнопку
+            this.classList.add('active');
+            
+            // Фильтруем тарифы
+            const filterType = this.getAttribute('data-filter');
+            filterTariffs(filterType);
+          });
+        });
+
+        // Загружаем тарифы при загрузке страницы
+        loadTariffs();
+      });
+
+      // Функция фильтрации тарифов
+      function filterTariffs(filterType) {
+        const cards = document.querySelectorAll('[data-tariff-type]');
+        
+        cards.forEach(card => {
+          if (filterType === 'all' || card.getAttribute('data-tariff-type') === filterType) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
           }
         });
-      
-        searchIcon.addEventListener("click", function (e) {
-          e.preventDefault();
-          filterCities();
+      }
+
+      // 3. Исправление работы модального окна подключения
+      function fixModalFormIssues() {
+        // Убедимся, что форма не теряет введенные данные
+        const connectionForm = document.getElementById('connectionForm');
+        
+        if (connectionForm) {
+          // Исправляем работу формы без потери данных
+          const formInputs = connectionForm.querySelectorAll('input:not([type="hidden"])');
+          formInputs.forEach(input => {
+            input.addEventListener('blur', function(e) {
+              // Сохраняем значение в атрибуте data
+              this.setAttribute('data-value', this.value);
+            });
+            
+            input.addEventListener('focus', function(e) {
+              // Проверяем, есть ли сохраненное значение
+              const savedValue = this.getAttribute('data-value');
+              if (savedValue) {
+                this.value = savedValue;
+              }
+            });
+          });
+        }
+      }
+
+      // 4. Исправление формы проверки адреса
+      function fixAddressForm() {
+        const addressForm = document.querySelector('.address-form');
+        
+        if (addressForm) {
+          const addressInputs = addressForm.querySelectorAll('input');
+          
+          addressInputs.forEach(input => {
+            // Предотвращаем перезагрузку при потере фокуса
+            input.addEventListener('blur', function(e) {
+              // Сохраняем значение в атрибуте
+              this.setAttribute('data-value', this.value);
+            });
+            
+            // Восстанавливаем значение при получении фокуса
+            input.addEventListener('focus', function(e) {
+              const savedValue = this.getAttribute('data-value');
+              if (savedValue) {
+                this.value = savedValue;
+              }
+            });
+          });
+        }
+      }
+
+      // Инициализация всех исправлений при загрузке страницы
+      document.addEventListener('DOMContentLoaded', function() {
+        // Загружаем тарифы
+        loadTariffs();
+        
+        // Фиксим модальное окно
+        fixModalFormIssues();
+        
+        // Фиксим форму проверки адреса
+        fixAddressForm();
+        
+        // Для телефонных полей добавляем маску, которая не теряет данные
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+          let lastValidValue = '';
+          
+          input.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            
+            if (value.length > 0 && value[0] !== '7') {
+              value = '7' + value;
+            }
+            
+            let formattedValue = '';
+            
+            if (value.length > 0) {
+              formattedValue = '+' + value.substring(0, 1);
+            }
+            if (value.length > 1) {
+              formattedValue += ' (' + value.substring(1, 4);
+            }
+            if (value.length > 4) {
+              formattedValue += ') ' + value.substring(4, 7);
+            }
+            if (value.length > 7) {
+              formattedValue += '-' + value.substring(7, 9);
+            }
+            if (value.length > 9) {
+              formattedValue += '-' + value.substring(9, 11);
+            }
+            
+            this.value = formattedValue;
+            lastValidValue = formattedValue;
+          });
+          
+          // Сохраняем значение при потере фокуса
+          input.addEventListener('blur', function() {
+            this.setAttribute('data-value', this.value);
+          });
+          
+          // Восстанавливаем значение при получении фокуса
+          input.addEventListener('focus', function() {
+            const savedValue = this.getAttribute('data-value');
+            if (savedValue) {
+              this.value = savedValue;
+            }
+          });
         });
-      };
+      });
+      // Функция для отображения модального окна подключения
+      function showConnectModal(tariffId, tariffName, tariffPrice) {
+        const modal = document.getElementById('connectModal');
+        document.getElementById('connectionTariffId').value = tariffId;
+        
+        // Настраиваем заголовок модального окна
+        if (tariffName && tariffPrice) {
+          document.querySelector('#connectModal h2').textContent = 
+            `Подключение: ${tariffName} за ${tariffPrice} ₽`;
+        } else {
+          document.querySelector('#connectModal h2').textContent = 'Оставьте заявку на подключение';
+        }
+        
+        modal.classList.remove('hidden');
+      }
 
+      // Функция для обработки формы подключения
+      function setupConnectionForm() {
+        const form = document.getElementById('connectionForm');
+        
+        if (form) {
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Простая валидация
+            const phoneInput = document.getElementById('connectionPhone');
+            const nameInput = document.getElementById('connectionName');
+            const tariffId = document.getElementById('connectionTariffId').value;
+            const address = document.getElementById('connectionAddress').value;
+            
+            // Удаляем предыдущие сообщения об ошибках
+            document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+            document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+            
+            let isValid = true;
+            
+            // Проверка имени
+            if (!nameInput.value.trim()) {
+              showValidationError(nameInput, 'Пожалуйста, введите ваше имя');
+              isValid = false;
+            }
+            
+            // Проверка телефона (простая проверка)
+            const phonePattern = /^\+?[0-9]{10,15}$/;
+            const phoneValue = phoneInput.value.replace(/[^\d+]/g, '');
+            
+            if (!phoneValue || !phonePattern.test(phoneValue)) {
+              showValidationError(phoneInput, 'Введите корректный номер телефона');
+              isValid = false;
+            }
+            
+            if (isValid) {
+              // Отправка данных на сервер
+              const formData = {
+                name: nameInput.value.trim(),
+                phone_number: phoneValue,
+                address: address.trim() || null,
+                tariff: tariffId || null
+              };
+              
+              // Здесь будет AJAX-запрос к API
+              fetch('/api/connection-requests/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': getCsrfToken() // Функция для получения CSRF-токена из cookies
+                },
+                body: JSON.stringify(formData)
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Ошибка при отправке заявки');
+                }
+                return response.json();
+              })
+              .then(data => {
+                // Закрываем модальное окно подключения
+                document.getElementById('connectModal').classList.add('hidden');
+                
+                // Очищаем форму
+                form.reset();
+                
+                // Показываем окно успеха
+                document.getElementById('successModal').classList.remove('hidden');
+              })
+              .catch(error => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте еще раз.');
+              });
+            }
+          });
+        }
+      }
 
+      // Функция для отображения ошибок валидации
+      function showValidationError(inputElement, message) {
+        inputElement.classList.add('is-invalid');
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'invalid-feedback';
+        errorDiv.textContent = message;
+        inputElement.parentNode.insertBefore(errorDiv, inputElement.nextSibling);
+      }
 
-      document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("city-item")) {
-      const cityName = e.target.textContent;
-      document.getElementById("selectedCity").textContent = cityName;
-      document.getElementById("cityModal").classList.add("hidden");
-    }
-  });
+      // Функция для получения CSRF-токена из cookies
+      function getCsrfToken() {
+        const name = 'csrftoken';
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+        return '';
+      }
 
+      // Настройка формы проверки адреса
+      function setupAddressCheckForm() {
+        const addressForm = document.querySelector('.address-form');
+        
+        if (addressForm) {
+          addressForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const inputs = addressForm.querySelectorAll('input');
+            const address = inputs[0].value.trim();
+            const phone = inputs[1].value.replace(/[^\d+]/g, '');
+            
+            if (!address || !phone) {
+              alert('Пожалуйста, заполните все обязательные поля');
+              return;
+            }
+            
+            // Отправка данных на сервер
+            const formData = {
+              phone_number: phone,
+              address: address
+            };
+            
+            fetch('/api/address-check/', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCsrfToken()
+              },
+              body: JSON.stringify(formData)
+            })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Ошибка при проверке адреса');
+              }
+              return response.json();
+            })
+            .then(data => {
+              // Очищаем форму
+              addressForm.reset();
+              
+              // Показываем окно успеха
+              document.getElementById('successModal').classList.remove('hidden');
+            })
+            .catch(error => {
+              console.error('Ошибка:', error);
+              alert('Произошла ошибка при проверке адреса. Пожалуйста, попробуйте еще раз.');
+            });
+          });
+        }
+      }
 
-
-
-
+      // Инициализация всех форм и обработчиков
+      document.addEventListener('DOMContentLoaded', function() {
+        // Настройка модальных окон
+        const connectModal = document.getElementById('connectModal');
+        const successModal = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const closeSuccessBtn = document.getElementById('closeSuccessBtn');
+        const headerConnectBtn = document.querySelector('.connect-btn');
+        
+        // Кнопка в шапке для открытия формы подключения
+        if (headerConnectBtn) {
+          headerConnectBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showConnectModal();
+          });
+        }
+        
+        // Закрытие модальных окон
+        if (closeModalBtn) {
+          closeModalBtn.addEventListener('click', function() {
+            connectModal.classList.add('hidden');
+          });
+        }
+        
+        if (closeSuccessBtn) {
+          closeSuccessBtn.addEventListener('click', function() {
+            successModal.classList.add('hidden');
+          });
+        }
+        
+        // Закрытие по клику вне модального окна
+        window.addEventListener('click', function(e) {
+          if (e.target === connectModal) {
+            connectModal.classList.add('hidden');
+          }
+          if (e.target === successModal) {
+            successModal.classList.add('hidden');
+          }
+        });
+        
+        // Инициализация форм
+        setupConnectionForm();
+        setupAddressCheckForm();
+        
+        // Маска для телефона (простая версия)
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+          input.addEventListener('input', function(e) {
+            let value = this.value.replace(/\D/g, '');
+            if (value.length > 0 && value[0] !== '7') {
+              value = '7' + value;
+            }
+            let formattedValue = '';
+            
+            if (value.length > 0) {
+              formattedValue = '+' + value.substring(0, 1);
+            }
+            if (value.length > 1) {
+              formattedValue += ' (' + value.substring(1, 4);
+            }
+            if (value.length > 4) {
+              formattedValue += ') ' + value.substring(4, 7);
+            }
+            if (value.length > 7) {
+              formattedValue += '-' + value.substring(7, 9);
+            }
+            if (value.length > 9) {
+              formattedValue += '-' + value.substring(9, 11);
+            }
+            
+            this.value = formattedValue;
+          });
+        });
+      });
       </script>
+    </body>
+    </html>
 
-</body>
-</html>
+{% endblock %}

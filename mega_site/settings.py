@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
-"""
+""" 
 
 from pathlib import Path
 
@@ -31,13 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'main',
+]  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,13 +52,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mega_site.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Убедись, что папка templates указана здесь
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -66,8 +69,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mega_site.wsgi.application'
 
+WSGI_APPLICATION = 'mega_site.wsgi.application'
+ 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -109,6 +113,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_URL = '/superadmin/login/'
 
 
 # Static files (CSS, JavaScript, Images)
