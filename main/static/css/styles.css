@@ -156,28 +156,25 @@ body {
 }
 
 .connect-btn {
-  background-color: #00B259;
+  background-color: #00b956;
   color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: bold;
-  white-space: normal;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 140px;
-  height: 40px;
-  text-transform: uppercase;
-  overflow: visible;
-  text-overflow: unset;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+}
+
+.connect-btn-purple {
+  background-color: #731982;
 }
 
 .connect-btn:hover {
-  background-color: #009e4e;
-  color: white;
-  text-decoration: none;
+  opacity: 0.9;
 }
 
 .bottom-nav {
@@ -468,7 +465,7 @@ body {
 /*выбор тарифов*/
 .tariff-section {
     background-color: #fff;
-    padding: 40px 20px;
+    padding: 120px 20px 40px;
 }
 
 .tariff-title {
@@ -493,8 +490,11 @@ body {
 .tariff-filters {
     display: flex;
     flex-wrap: wrap;
-    column-gap: 50px; /* расстояние по горизонтали */
-    row-gap: 30px;     /* если кнопки переносятся */
+    column-gap: 50px;
+    row-gap: 30px;
+    position: relative;
+    z-index: 3;
+    margin-bottom: 40px;  /* Увеличиваем отступ снизу */
 }
 
 
@@ -993,11 +993,15 @@ body {
 }
 
 #tariffCardsContainer {
-  flex-wrap: nowrap;  /* ❗️отключает перенос */
-  justify-content: space-between;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
+  padding: 0 10px;
+}
+
+.col-lg-3 {
+  width: 100%;
+  padding: 0 10px;
 }
 
 .tariff-wrapper {
@@ -1018,5 +1022,213 @@ body {
   .tariff-wrapper {
     flex: 0 0 100%;
     max-width: 100%;
+  }
+}
+
+.tariff-card-wrapper {
+  flex: 0 0 320px;
+  width: 320px;
+  padding: 0 10px;  /* Добавляем отступы по бокам */
+  margin: 0 5px;    /* Добавляем внешние отступы */
+}
+
+.tariff-carousel {
+  display: flex;
+  transition: transform 0.3s ease;
+  gap: 20px;        /* Увеличиваем расстояние между карточками */
+  padding: 20px 0;  /* Добавляем padding для пространства при hover */
+}
+
+.tariff-carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: visible;  /* Меняем на visible чтобы карточки могли выходить за пределы */
+  padding: 20px 40px;  /* Добавляем padding сверху и снизу */
+  margin: 0 -10px;
+}
+
+.tariff-card {
+  background: white;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  z-index: 1;  /* Добавляем z-index */
+}
+
+.tariff-card:hover {
+  transform: translateY(-5px);
+  border-color: #731982;
+  box-shadow: 0 8px 16px rgba(115, 25, 130, 0.1);
+  z-index: 2;  /* Увеличиваем z-index при наведении */
+}
+
+.tariff-header {
+  margin-bottom: 16px;  /* Уменьшаем отступ снизу */
+  flex-shrink: 0;
+  background-color: #f3e5ff;
+  border-radius: 16px;
+  padding: 16px;  /* Уменьшаем внутренние отступы с 24px до 16px */
+}
+
+.tariff-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 2px;  /* Уменьшаем с 4px до 2px */
+  line-height: 1.2;  /* Уменьшаем line-height */
+}
+
+.tariff-price-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;  /* Уменьшаем gap между ценами */
+  margin-bottom: 1px;  /* Уменьшаем с 2px до 1px */
+}
+
+.tariff-price-old {
+  position: relative;
+  text-decoration: none;  /* Убираем стандартное зачеркивание */
+  color: #000000;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.tariff-price-old::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 3px;  /* Толщина линии */
+  background-color: #ff0000;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tariff-price-current {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.tariff-duration {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 0;
+}
+
+.tariff-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex: 1;
+  overflow: visible;
+  padding: 16px;
+  background-color: #f5f5f5;
+  border-radius: 12px;
+  min-height: 150px;  /* Уменьшаем высоту со 180px до 150px */
+}
+
+.megasila-feature {
+  padding: 12px 0;
+  margin: 0 0 2px 0;  /* Уменьшаем отступ снизу с 4px до 2px */
+  border-top: none;
+}
+
+/* Убираем стили для скроллбара, так как он больше не нужен */
+.tariff-features::-webkit-scrollbar {
+  display: none;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  min-height: 24px;
+  margin-bottom: 4px;  /* Добавляем отступ снизу */
+}
+
+.feature-icon {
+  width: 24px;
+  height: 24px;
+  color: #000000;
+  flex-shrink: 0;
+  display: flex;  /* Добавляем для центрирования SVG */
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;  /* Убираем лишние отступы у SVG */
+}
+
+.feature-text {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  line-height: 1;  /* Уменьшаем высоту строки */
+  padding: 2px 0;  /* Добавляем небольшой отступ сверху и снизу */
+}
+
+.feature-promo {
+  background-color: #f0f6ff;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;  /* Уменьшаем размер промо-текста */
+  color: #731982;
+}
+
+.details-link {
+  display: block;
+  text-align: center;
+  color: #00b956;
+  text-decoration: none;
+  font-size: 13px;
+  flex-shrink: 0;  /* Запрещаем сжатие ссылки */
+}
+
+.details-link:hover {
+  text-decoration: underline;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (min-width: 1200px) {
+  .tariff-card-wrapper {
+    flex: 0 0 320px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .tariff-card-wrapper {
+    flex: 0 0 320px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .tariff-card-wrapper {
+    flex: 0 0 320px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tariff-card-wrapper {
+    flex: 0 0 320px;
+  }
+  
+  .tariff-card {
+    height: 480px;  /* Уменьшаем высоту для мобильных устройств с 520px до 480px */
   }
 }
