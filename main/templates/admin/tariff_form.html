@@ -11,7 +11,20 @@
             {% for field in form %}
                 <div class="col-md-6">
                     <label class="form-label">{{ field.label }}</label>
-                    {{ field }}
+                    {% if field.name == 'town' %}
+                        <select name="town" id="id_town" class="form-select" {% if not form.instance.region %}disabled{% endif %}>
+                            <option value="">---------</option>
+                            {% if form.instance.region %}
+                                {% for town in form.instance.region.towns.all %}
+                                    <option value="{{ town.id }}" {% if form.instance.town.id == town.id %}selected{% endif %}>
+                                        {{ town.name }}
+                                    </option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                     {% if field.errors %}
                         <div class="text-danger small">{{ field.errors }}</div>
                     {% endif %}
@@ -22,4 +35,43 @@
         <a href="{% url 'admin_tariffs' %}" class="btn btn-secondary mt-3">Отмена</a>
     </form>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const regionSelect = document.getElementById('id_region');
+    const townSelect = document.getElementById('id_town');
+
+    if (regionSelect && townSelect) {
+        regionSelect.addEventListener('change', function() {
+            const regionId = this.value;
+            townSelect.disabled = !regionId;
+            
+            if (regionId) {
+                // Очищаем текущий список городов
+                townSelect.innerHTML = '<option value="">Загрузка...</option>';
+                
+                // Запрашиваем города для выбранного региона
+                fetch(`/api/regions/${regionId}/towns/`)
+                    .then(response => response.json())
+                    .then(towns => {
+                        townSelect.innerHTML = '<option value="">---------</option>';
+                        towns.forEach(town => {
+                            const option = document.createElement('option');
+                            option.value = town.id;
+                            option.textContent = town.name;
+                            townSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error fetching towns:', error);
+                        townSelect.innerHTML = '<option value="">Ошибка загрузки городов</option>';
+                    });
+            } else {
+                // Если регион не выбран, очищаем список городов
+                townSelect.innerHTML = '<option value="">---------</option>';
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

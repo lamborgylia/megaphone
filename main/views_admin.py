@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import *
+from django.contrib import messages
 
 def admin_login(request):
     if request.method == 'POST':
@@ -51,6 +52,16 @@ def admin_request_detail(request, request_id):
             conn_request.save()
             return redirect('admin_requests')
     return render(request, 'admin/request_detail.html', {'request_obj': conn_request})
+
+@login_required
+def admin_update_request_status(request, request_id):
+    if request.method == 'POST':
+        conn_request = get_object_or_404(ConnectionRequest, id=request_id)
+        new_status = request.POST.get('status')
+        if new_status in dict(ConnectionRequest._meta.get_field('status').choices):
+            conn_request.status = new_status
+            conn_request.save()
+    return redirect('admin_requests')
 
 def admin_tariff_list(request):
     tariffs = Tariff.objects.all()

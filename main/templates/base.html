@@ -13,49 +13,37 @@
 
 <header class="header">
   <div class="header-top">
-    <!-- ЛЕВАЯ часть -->
     <div class="header-left">
-      <div class="logo">
+      <a href="/" class="logo">
         <img src="{% static 'img/logo.svg' %}" alt="МегаФон">
-        <div class="partner">официальный партнёр</div>
-      </div>
-      
-      <!-- Навигация для десктопа -->
+        <span class="partner">официальный партнёр</span>
+      </a>
       <nav class="top-nav desktop-only">
-        <a href="#">Для дома</a>
+        <a href="#">Тарифы</a>
+        <a href="#">Интернет</a>
         <a href="#">Для бизнеса</a>
-        <a href="#">Личный кабинет</a>
       </nav>
     </div>
 
-    <!-- ЦЕНТРАЛЬНАЯ часть -->
-    <div class="header-center desktop-only">
-      <div class="support-info">
+    <div class="header-right">
+      <div class="support-info desktop-only">
         <div class="support-block">
-          <span class="support-label">Подключение</span>
-          <span class="support-number">+7 937 657 54 58</span>
-        </div>
-        <div class="support-block">
-          <span class="support-label">Техподдержка</span>
-          <span class="support-number">8 800 550 00 01</span>
+          <span class="support-label">Поддержка</span>
+          <span class="support-number">8 (800) 250-93-87</span>
         </div>
         <div class="support-icons">
-          <a href="#"><img src="{% static 'img/whatsapp-icon.png' %}" alt="WhatsApp"></a>
           <a href="#"><img src="{% static 'img/telegram-icon.png' %}" alt="Telegram"></a>
+          <a href="#"><img src="{% static 'img/whatsapp-icon.png' %}" alt="WhatsApp"></a>
         </div>
       </div>
-    </div>
-
-    <!-- ПРАВАЯ часть -->
-    <div class="region-dropdown">
-      <button class="region-button">
-        <img src="{% static 'img/location-icon.jpg' %}" alt="Локация">
-        <span id="cityHeader">г Самара</span>
-      </button>
-      <a href="#" class="connect-btn">Подключиться</a>
-      
-      <!-- Кнопка бургер-меню (только для мобильных) -->
-      <button class="mobile-menu-toggle mobile-only" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+      <div class="region-dropdown">
+        <button class="region-button" onclick="document.getElementById('cityModal').classList.remove('hidden')">
+          <img src="{% static 'img/location-icon.jpg' %}" alt="Локация">
+          <span id="cityHeader">{{ current_region.name }}</span>
+        </button>
+      </div>
+      <button class="header-connect-btn">Подключиться</button>
+      <button class="mobile-menu-toggle mobile-only" id="burger-toggle" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
@@ -116,6 +104,31 @@
   <!-- Контент подгрузится отсюда -->
   {% endblock %}
 </main>
+
+<script>
+    document.addEventListener('click', function (e) {
+        // Закрытие при клике на город
+        if (e.target.classList.contains('city-item')) {
+            const selectedCity = e.target.innerText;
+            const selectedRegion = e.target.dataset.regionId;
+
+            // обновляем названия в шапке и тарифах, а также загружаем тарифы для региона
+            updateSelectedCity(selectedCity, selectedRegion);
+            document.getElementById('cityModal').classList.add('hidden');
+
+            // снимаем выделение с других городов
+            document.querySelectorAll('.city-item').forEach(el => el.classList.remove('active'));
+
+            // добавляем выделение текущему
+            e.target.classList.add('active');
+        }
+
+        // Закрытие при клике на фон или кнопку закрытия
+        if (e.target.classList.contains('city-modal') || e.target.classList.contains('close-btn')) {
+            document.getElementById('cityModal').classList.add('hidden');
+        }
+    });
+</script>
 
 </body>
 </html>

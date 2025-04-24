@@ -3,20 +3,8 @@
 {% block title %}Панель управления{% endblock %}
 
 {% block content %}
-  <h3 class="mb-4">Разделы</h3>
-
-  <a href="{% url 'admin_tariffs' %}" class="section-link">
-    <span>📦 Тарифы</span>
-    <span class="icon">›</span>
-  </a>
-
-  <a href="{% url 'manage_locations' %}" class="section-link">
-    <span>🌍 Регионы и города</span>
-    <span class="icon">›</span>
-  </a>
-
-  <a href="{% url 'admin_requests' %}" class="section-link">
-    <span>📬 Заявки</span>
-    <span class="icon">›</span>
-  </a>
+<div class="admin-dashboard">
+    <h2>Добро пожаловать в панель управления</h2>
+    <p>Выберите нужный раздел в меню для управления контентом.</p>
+</div>
 {% endblock %}

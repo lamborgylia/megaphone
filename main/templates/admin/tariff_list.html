@@ -1,46 +1,98 @@
 {% extends "admin/base_admin.html" %}
 
-{% block title %}Тарифы — Админка{% endblock %}
+{% block title %}Управление тарифами{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
-    <h3>📡 Тарифы</h3>
-      
-    <a href="{% url 'admin_tariff_create' %}" class="btn btn-success mb-3">➕ Добавить тариф</a>
-    
-    <table class="table table-striped table-hover shadow-sm bg-white">
-        <thead class="table-primary">
-            <tr>
-                <th>ID</th>
-                <th>Название</th>
-                <th>Цена</th>
-                <th>Регион</th>
-                <th>Активен</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for tariff in tariffs %}
-            <tr>
-                <td>{{ tariff.id }}</td>
-                <td>{{ tariff.title }}</td>
-                <td>{{ tariff.price }}</td>
-                <td>{{ tariff.region.name }}</td>
-                <td>{% if tariff.is_active %}✅{% else %}❌{% endif %}</td>
-                <td>
-                    {% if tariff.id %}
-                        <a href="{% url 'admin_toggle_tariff' tariff.id %}" class="btn btn-sm {% if tariff.is_active %}btn-warning{% else %}btn-success{% endif %}">
-                            {% if tariff.is_active %}Выключить{% else %}Включить{% endif %}
-                        </a>
-                        <a href="{% url 'admin_tariff_update' tariff.id %}" class="btn btn-sm btn-primary">✏️</a>
-                        <a href="{% url 'admin_tariff_delete' tariff.id %}" class="btn btn-sm btn-outline-danger">🗑</a>
-                    {% else %}
-                        <span class="text-muted">Нет ID</span>
-                    {% endif %}
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Управление тарифами</h2>
+        <a href="{% url 'admin_tariff_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Добавить тариф
+        </a>
+    </div>
+
+    {% if tariffs %}
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Цена</th>
+                        <th>Город</th>
+                        <th>Статус</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tariff in tariffs %}
+                    <tr>
+                        <td>
+                            <div class="fw-bold">{{ tariff.name }}</div>
+                            {% if tariff.is_megatariff %}
+                            <span class="badge bg-purple">МегаТариф</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if tariff.old_price %}
+                            <span class="text-decoration-line-through text-muted">{{ tariff.old_price }} ₽</span><br>
+                            {% endif %}
+                            <span class="fw-bold">{{ tariff.current_price }} ₽</span>
+                        </td>
+                        <td>
+                            {% if tariff.town %}
+                                {{ tariff.town.name }}
+                            {% else %}
+                                <span class="text-muted">Все города региона {{ tariff.region.name }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="{% url 'admin_toggle_tariff' tariff.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm {% if tariff.is_active %}btn-success{% else %}btn-secondary{% endif %}">
+                                    {% if tariff.is_active %}
+                                        <i class="fas fa-check-circle"></i> Активен
+                                    {% else %}
+                                        <i class="fas fa-times-circle"></i> Неактивен
+                                    {% endif %}
+                                </button>
+                            </form>
+                        </td>
+                        <td>
+                            <div class="action-buttons">
+                                <a href="{% url 'admin_tariff_update' tariff.pk %}" class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'admin_tariff_delete' tariff.pk %}" class="btn btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i> Тарифы пока не добавлены
+    </div>
+    {% endif %}
 </div>
+
+<style>
+    .bg-purple {
+        background-color: var(--primary-color);
+    }
+    
+    .badge {
+        font-weight: 500;
+        font-size: 0.75rem;
+    }
+    
+    .table > :not(caption) > * > * {
+        padding: 1rem;
+    }
+</style>
 {% endblock %}
