@@ -1,0 +1,64 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Управление оборудованием{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Управление оборудованием</h2>
+        <a href="{% url 'admin_equipment_create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Добавить оборудование
+        </a>
+    </div>
+
+    {% if equipment_list %}
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Цена</th>
+                    <th>Срок аренды</th>
+                    <th>Рассрочка</th>
+                    <th>Площадь покрытия</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equipment in equipment_list %}
+                <tr>
+                    <td>{{ equipment.name }}</td>
+                    <td>{{ equipment.price }} ₽</td>
+                    <td>{{ equipment.rental_period }}</td>
+                    <td>{% if equipment.is_installment %}Да{% else %}Нет{% endif %}</td>
+                    <td>{{ equipment.coverage_area|default:"-" }}</td>
+                    <td>
+                        <form action="{% url 'admin_equipment_toggle' equipment.pk %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm {% if equipment.is_active %}btn-success{% else %}btn-secondary{% endif %}">
+                                {% if equipment.is_active %}Активно{% else %}Неактивно{% endif %}
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'admin_equipment_edit' equipment.pk %}" class="btn btn-sm btn-outline-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="{% url 'admin_equipment_delete' equipment.pk %}" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="alert alert-info">
+        Оборудование пока не добавлено
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,141 @@
+{% extends "admin/base_admin.html" %}
+
+{% block title %}Управление регионами и городами{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Форма добавления региона -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-map me-2"></i>Добавить регион
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="{{ region_form.name.id_for_label }}" class="form-label">Название региона</label>
+                            {{ region_form.name }}
+                            {% if region_form.name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ region_form.name.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" name="add_region" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Добавить регион
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Форма добавления города -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <i class="fas fa-city me-2"></i>Добавить город
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="{{ town_form.name.id_for_label }}" class="form-label">Название города</label>
+                            {{ town_form.name }}
+                            {% if town_form.name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ town_form.name.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ town_form.region.id_for_label }}" class="form-label">Регион</label>
+                            {{ town_form.region }}
+                            {% if town_form.region.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ town_form.region.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <button type="submit" name="add_town" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Добавить город
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Список регионов и городов</h2>
+    {% for region in regions %}
+    <div class="border p-3 mb-2 bg-light">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">{{ region.name }}</h4>
+            <form method="post" style="margin: 0;">
+                {% csrf_token %}
+                <input type="hidden" name="region_id" value="{{ region.id }}">
+                <button type="submit" name="delete_region" class="btn btn-sm btn-danger">Удалить регион</button>
+            </form>
+        </div>
+        <ul class="mt-2">
+            {% for town in region.localities.all %}
+                <li class="d-flex justify-content-between align-items-center">
+                    {{ town.name }}
+                    <form method="post" style="margin: 0;">
+                        {% csrf_token %}
+                        <input type="hidden" name="town_id" value="{{ town.id }}">
+                        <button type="submit" name="delete_town" class="btn btn-sm btn-outline-danger">Удалить</button>
+                    </form>
+                </li>
+            {% empty %}
+                <li class="text-muted">Нет городов</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .card-header {
+        background-color: white;
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.25rem;
+    }
+
+    .card-title {
+        color: var(--primary-color);
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(115, 25, 130, 0.15);
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--primary-hover);
+        border-color: var(--primary-hover);
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+</style>
+{% endblock %}

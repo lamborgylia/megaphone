@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Заявка №{{ request_obj.id }}</title>
+</head>
+<body>
+    <h2>Заявка №{{ request_obj.id }}</h2>
+    <p><strong>Телефон:</strong> {{ request_obj.phone_number }}</p>
+    <p><strong>Адрес:</strong> {{ request_obj.address|default:"—" }}</p>
+    <p><strong>Тариф:</strong> {{ request_obj.tariff.name if request_obj.tariff }}</p>
+    <p><strong>Дата:</strong> {{ request_obj.submitted_at }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label>Статус:</label>
+        <select name="status">
+            {% for val, label in request_obj._meta.get_field('status').choices %}
+                <option value="{{ val }}" {% if request_obj.status == val %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Сохранить</button>
+    </form>
+    <p><a href="{% url 'admin_requests' %}">← Назад к списку</a></p>
+</body>
+</html>

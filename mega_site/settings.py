@@ -8,10 +8,10 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
-"""
+""" 
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,17 +27,30 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Maximum upload file size (5MB)
+MAX_UPLOAD_SIZE = 5242880
+
+# Allowed file extensions
+ALLOWED_IMAGE_EXTENSIONS = ['jpg', 'jpeg', 'png', 'gif']
+
+# Image size limits
+MAX_IMAGE_WIDTH = 2000
+MAX_IMAGE_HEIGHT = 2000
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+    'main',
+]  
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,13 +64,15 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mega_site.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Убедись, что папка templates указана здесь
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -66,8 +81,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mega_site.wsgi.application'
 
+WSGI_APPLICATION = 'mega_site.wsgi.application'
+ 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -109,6 +125,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+LOGIN_URL = '/superadmin/login/'
 
 
 # Static files (CSS, JavaScript, Images)
