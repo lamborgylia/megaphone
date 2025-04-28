@@ -1,0 +1,11 @@
+{
+    "cursor.composer.shouldShowMarkdownHoverParticipantActions2": true,
+    "cursor.cpp.enablePartialAccepts": false,
+    "cursor.diffs.useCharacterLevelDiffs": true,
+    "cursor.general.disableHttp2": true,
+    "cursor.general.enableShadowWorkspace": true,
+    "cursor.preferNotificationsSameAsChat": true,
+    "cursor.terminal.usePreviewBox": true,
+    "editor.inlineSuggest.edits.experimental.useInterleavedLinesDiff": "always",
+    "diffEditor.experimental.useTrueInlineView": true
+}
